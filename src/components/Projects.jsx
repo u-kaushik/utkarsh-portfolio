@@ -11,11 +11,12 @@ gsap.registerPlugin(ScrollTrigger)
 function AgentPipelineMockup() {
   const canvasRef = useRef(null)
   const [agents] = useState([
-    { name: 'IRIS', x: 0.12, y: 0.22, color: '#E63B2E' },
-    { name: 'LUNA', x: 0.38, y: 0.15, color: '#E63B2E' },
-    { name: 'ECHO', x: 0.65, y: 0.22, color: '#E63B2E' },
-    { name: 'DASH', x: 0.88, y: 0.15, color: '#E63B2E' },
-    { name: 'QUINN', x: 0.5, y: 0.55, color: '#E8E4DD' },
+    { name: 'SOLA', x: 0.08, y: 0.18, color: '#E63B2E' },
+    { name: 'ARCHIE', x: 0.28, y: 0.45, color: '#E63B2E' },
+    { name: 'KAI', x: 0.5, y: 0.18, color: '#E63B2E' },
+    { name: 'IRIS', x: 0.72, y: 0.45, color: '#E63B2E' },
+    { name: 'DASH', x: 0.92, y: 0.18, color: '#E63B2E' },
+    { name: 'JARVIS', x: 0.5, y: 0.7, color: '#E8E4DD' },
   ])
 
   useEffect(() => {
@@ -34,8 +35,10 @@ function AgentPipelineMockup() {
       ctx.clearRect(0, 0, w, h)
 
       // Draw connection lines with animated pulse
+      // Sola→Archie→Kai→Iris→Dash pipeline, all connecting to Jarvis (orchestrator)
       const connections = [
-        [0, 1], [1, 2], [2, 3], [0, 4], [1, 4], [2, 4], [3, 4],
+        [0, 1], [1, 2], [2, 3], [3, 4],
+        [0, 5], [1, 5], [2, 5], [3, 5], [4, 5],
       ]
       connections.forEach(([a, b]) => {
         const from = agents[a]
@@ -72,14 +75,14 @@ function AgentPipelineMockup() {
         const pulse = Math.sin(frame * 0.03 + i) * 3
 
         // Outer ring
-        ctx.strokeStyle = i === 4 ? 'rgba(232, 228, 221, 0.3)' : 'rgba(230, 59, 46, 0.3)'
+        ctx.strokeStyle = i === 5 ? 'rgba(232, 228, 221, 0.3)' : 'rgba(230, 59, 46, 0.3)'
         ctx.lineWidth = 1
         ctx.beginPath()
         ctx.arc(x, y, 18 + pulse, 0, Math.PI * 2)
         ctx.stroke()
 
         // Inner dot
-        ctx.fillStyle = i === 4 ? '#E8E4DD' : '#E63B2E'
+        ctx.fillStyle = i === 5 ? '#E8E4DD' : '#E63B2E'
         ctx.beginPath()
         ctx.arc(x, y, 5, 0, Math.PI * 2)
         ctx.fill()
@@ -131,18 +134,21 @@ function DashboardLiveMockup() {
 
   const feedMessages = [
     { agent: 'Jarvis', msg: 'Routed task #847 to Echo', type: 'route' },
-    { agent: 'Echo', msg: 'Draft complete — 1,200 words', type: 'done' },
+    { agent: 'Sola', msg: 'Research complete — 12 sources', type: 'done' },
+    { agent: 'Archie', msg: 'Architecture drafted for module', type: 'done' },
+    { agent: 'Kai', msg: 'Build complete — 3 components', type: 'done' },
+    { agent: 'Iris', msg: 'Code review passed, 0 issues', type: 'approve' },
     { agent: 'Luna', msg: 'Generated 3 assets via Nano Banana', type: 'done' },
-    { agent: 'Sola', msg: 'SEO score: 94/100', type: 'metric' },
+    { agent: 'Echo', msg: 'Draft complete — 1,200 words', type: 'done' },
     { agent: 'Quinn', msg: 'Approval: blog post #23', type: 'approve' },
-    { agent: 'Dash', msg: 'Published to LinkedIn', type: 'done' },
+    { agent: 'Dash', msg: 'Deployed to production', type: 'done' },
     { agent: 'Jarvis', msg: 'Memory: stored semantic context', type: 'route' },
-    { agent: 'System', msg: 'All 6 agents operational', type: 'metric' },
+    { agent: 'System', msg: 'All 9 agents operational', type: 'metric' },
   ]
 
   // Animate counters
   useEffect(() => {
-    const targets = { tasks: 847, agents: 6, uptime: 99.7 }
+    const targets = { tasks: 847, agents: 9, uptime: 99.7 }
     let frame = 0
     const interval = setInterval(() => {
       frame++
@@ -252,8 +258,8 @@ const projects = [
     description:
       'Multi-agent pipeline where AI makes every routing and dispatch decision. Produces Swift code, App Store metadata, pricing strategy, and marketing copy from a single input. No human in the loop.',
     tags: ['Python', 'Multi-Agent', 'LLM Orchestration', 'Prompt Chaining'],
-    github: 'https://github.com/u-kaushik',
-    live: '#',
+    github: 'https://github.com/u-kaushik/Auto-App-Factory-Portfolio',
+    live: 'https://github.com/u-kaushik/Auto-App-Factory-Portfolio',
     icon: Bot,
     bg: 'bg-ink',
     accent: 'signal',
@@ -265,10 +271,10 @@ const projects = [
     year: '2025',
     tagline: 'A personal AI operating system. One interface for everything.',
     description:
-      'Live dashboard integrating 6 AI agents, task orchestration, semantic memory, and EOS business execution. Jarvis coordinates via Telegram. The system gets smarter over time.',
+      'Live dashboard integrating 9 AI agents, task orchestration, semantic memory, and EOS business execution. Jarvis coordinates via Telegram. The system gets smarter over time.',
     tags: ['TypeScript', 'React', 'Supabase', 'Semantic Memory', 'EOS'],
-    github: 'https://github.com/u-kaushik',
-    live: '#',
+    github: 'https://github.com/u-kaushik/Mission-Control-Portfolio',
+    live: 'https://github.com/u-kaushik/Mission-Control-Portfolio',
     icon: LayoutDashboard,
     bg: 'bg-[#0D0D14]',
     accent: 'signal',
