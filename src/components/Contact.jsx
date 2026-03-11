@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Mail, Github, ArrowUpRight } from 'lucide-react'
+import { Mail, Github, Linkedin, ArrowUpRight } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -55,6 +55,18 @@ export default function Contact() {
             <span className="btn-bg bg-ink rounded-full" />
             <Mail size={16} className="relative z-10" />
             <span className="relative z-10">ukaushik@hotmail.co.uk</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/utkarshkaushik"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-reveal btn-magnetic inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#0A66C2] text-offwhite font-heading font-semibold text-sm"
+          >
+            <span className="btn-bg bg-ink rounded-full" />
+            <Linkedin size={16} className="relative z-10" />
+            <span className="relative z-10">LinkedIn</span>
+            <ArrowUpRight size={14} className="relative z-10 opacity-50" />
           </a>
 
           <a

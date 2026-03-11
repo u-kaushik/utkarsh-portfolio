@@ -203,12 +203,11 @@ export default function Protocol() {
         if (!card) return
         ScrollTrigger.create({
           trigger: card,
-          start: 'top 15%',
-          end: 'bottom 15%',
+          start: 'top 10%',
+          end: 'bottom 10%',
           pin: true,
           pinSpacing: true,
           onEnter: () => {
-            // Scale and blur the previous card
             if (i > 0 && cardsRef.current[i - 1]) {
               gsap.to(cardsRef.current[i - 1], {
                 scale: 0.92,
@@ -237,8 +236,8 @@ export default function Protocol() {
   }, [])
 
   return (
-    <section id="protocol" ref={sectionRef} className="py-24 md:py-32">
-      <div className="px-6 md:px-16 lg:px-24 mb-16">
+    <section id="protocol" ref={sectionRef} className="bg-paper/60 py-24 md:py-32">
+      <div className="px-6 md:px-16 lg:px-24 mb-16 max-w-7xl mx-auto">
         <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase">
           How I Work
         </span>
@@ -250,9 +249,9 @@ export default function Protocol() {
           <div
             key={step.num}
             ref={(el) => (cardsRef.current[i] = el)}
-            className="min-h-screen flex items-center px-6 md:px-16 lg:px-24"
+            className="h-screen flex items-center justify-center px-6 md:px-16 lg:px-24"
           >
-            <div className="w-full bg-offwhite border border-paper rounded-[3rem] p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 shadow-sm">
+            <div className="w-full max-w-6xl mx-auto bg-offwhite border border-paper/80 rounded-[3rem] p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 shadow-md">
               <div className="flex flex-col justify-center">
                 <span className="font-mono text-signal text-sm mb-4">{step.num}</span>
                 <h3 className="font-heading font-bold text-4xl md:text-6xl mb-4">
@@ -262,7 +261,7 @@ export default function Protocol() {
                   {step.description}
                 </p>
               </div>
-              <div className="h-[250px] md:h-[350px] rounded-[2rem] bg-paper/50 overflow-hidden">
+              <div className="h-[250px] md:h-[350px] rounded-[2rem] bg-ink/[0.03] overflow-hidden">
                 <AnimComponent />
               </div>
             </div>
