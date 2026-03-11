@@ -1,300 +1,415 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ExternalLink, Github, Bot, LayoutDashboard, FileSearch, Building2 } from 'lucide-react'
+import { Github, Bot, LayoutDashboard, ArrowRight } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const projects = [
-  {
-    title: 'Autonomous App Factory',
-    year: '2025',
-    description:
-      'Multi-agent pipeline that produces real software artifacts. Swift code, App Store metadata, pricing strategy, marketing copy. AI makes all routing and dispatch decisions. No human orchestration.',
-    tags: ['Python', 'Multi-Agent', 'LLM Orchestration'],
-    github: 'https://github.com/u-kaushik',
-    live: '#',
-    icon: Bot,
-    mockup: {
-      gradient: 'from-signal/20 via-ink/10 to-ink/5',
-      lines: [
-        { w: '60%', color: 'bg-signal/30' },
-        { w: '80%', color: 'bg-ink/10' },
-        { w: '45%', color: 'bg-signal/20' },
-        { w: '70%', color: 'bg-ink/10' },
-        { w: '55%', color: 'bg-signal/15' },
-      ],
-      label: 'agent-orchestrator.py',
-    },
-  },
-  {
-    title: 'Mission Control',
-    year: '2025',
-    description:
-      'My personal AI operating system. A live dashboard integrating agents, task orchestration, semantic memory, and EOS business frameworks into one command interface. Jarvis runs it all via Telegram.',
-    tags: ['TypeScript', 'React', 'Supabase', 'AI Agents'],
-    github: 'https://github.com/u-kaushik',
-    live: '#',
-    icon: LayoutDashboard,
-    mockup: {
-      gradient: 'from-ink/10 via-paper to-offwhite',
-      type: 'dashboard',
-      label: 'dashboard.tsx',
-    },
-  },
-  {
-    title: 'Apply-Pilot',
-    year: '2026',
-    description:
-      'AI-powered job application platform. Forked an open-source Python backend, designed and shipped an entirely new responsive frontend in under 24 hours. Scrapes listings, scores fit, tailors CVs, automates applications.',
-    tags: ['Python', 'React', 'AI/ML', 'Rapid Build'],
-    github: 'https://github.com/u-kaushik',
-    live: '#',
-    icon: FileSearch,
-    mockup: {
-      gradient: 'from-signal/10 via-offwhite to-paper',
-      lines: [
-        { w: '90%', color: 'bg-ink/8' },
-        { w: '75%', color: 'bg-signal/20' },
-        { w: '85%', color: 'bg-ink/8' },
-        { w: '60%', color: 'bg-signal/15' },
-        { w: '70%', color: 'bg-ink/8' },
-      ],
-      label: 'apply-pilot.tsx',
-    },
-  },
-  {
-    title: 'RCA Flow',
-    year: '2025',
-    description:
-      'Multi-tenant SaaS for UK surveyor firms. Role-based workflows, CSV import at scale, approval chains, automated PDF reports, team analytics. Deployed on GCP.',
-    tags: ['React', 'Firebase', 'GCP', 'Multi-tenant'],
-    github: 'https://github.com/u-kaushik',
-    live: '#',
-    icon: Building2,
-    mockup: {
-      gradient: 'from-paper via-ink/5 to-offwhite',
-      type: 'table',
-      label: 'rca-flow.tsx',
-    },
-  },
-]
+/* ============================================
+   LIVE MOCKUP: Agent Pipeline Visualization
+   ============================================ */
+function AgentPipelineMockup() {
+  const canvasRef = useRef(null)
+  const [agents] = useState([
+    { name: 'IRIS', x: 0.12, y: 0.22, color: '#E63B2E' },
+    { name: 'LUNA', x: 0.38, y: 0.15, color: '#E63B2E' },
+    { name: 'ECHO', x: 0.65, y: 0.22, color: '#E63B2E' },
+    { name: 'DASH', x: 0.88, y: 0.15, color: '#E63B2E' },
+    { name: 'QUINN', x: 0.5, y: 0.55, color: '#E8E4DD' },
+  ])
 
-/* Browser-frame mockup with code lines */
-function CodeMockup({ mockup }) {
-  return (
-    <div className="w-full h-full bg-ink rounded-2xl overflow-hidden flex flex-col">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-ink border-b border-offwhite/5">
-        <span className="w-2 h-2 rounded-full bg-signal/60" />
-        <span className="w-2 h-2 rounded-full bg-ink/40 border border-offwhite/10" />
-        <span className="w-2 h-2 rounded-full bg-ink/40 border border-offwhite/10" />
-        <span className="font-mono text-[9px] text-offwhite/20 ml-2">{mockup.label}</span>
-      </div>
-      {/* Code content */}
-      <div className={`flex-1 bg-gradient-to-br ${mockup.gradient} p-4 flex flex-col gap-2 justify-center`}>
-        {mockup.lines?.map((line, i) => (
-          <div
-            key={i}
-            className={`h-1.5 rounded-full ${line.color}`}
-            style={{ width: line.w }}
-          />
-        ))}
-      </div>
-    </div>
-  )
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    let frame = 0
+    let animId
+
+    const draw = () => {
+      const dpr = 2
+      canvas.width = canvas.offsetWidth * dpr
+      canvas.height = canvas.offsetHeight * dpr
+      ctx.scale(dpr, dpr)
+      const w = canvas.offsetWidth
+      const h = canvas.offsetHeight
+      ctx.clearRect(0, 0, w, h)
+
+      // Draw connection lines with animated pulse
+      const connections = [
+        [0, 1], [1, 2], [2, 3], [0, 4], [1, 4], [2, 4], [3, 4],
+      ]
+      connections.forEach(([a, b]) => {
+        const from = agents[a]
+        const to = agents[b]
+        const fx = from.x * w, fy = from.y * h
+        const tx = to.x * w, ty = to.y * h
+
+        // Static line
+        ctx.strokeStyle = 'rgba(232, 228, 221, 0.08)'
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(fx, fy)
+        ctx.lineTo(tx, ty)
+        ctx.stroke()
+
+        // Animated particle along line
+        const speed = 0.001 + (a * 0.0003)
+        const t = ((frame * speed) + a * 0.2) % 1
+        const px = fx + (tx - fx) * t
+        const py = fy + (ty - fy) * t
+        const glow = ctx.createRadialGradient(px, py, 0, px, py, 8)
+        glow.addColorStop(0, 'rgba(230, 59, 46, 0.8)')
+        glow.addColorStop(1, 'rgba(230, 59, 46, 0)')
+        ctx.fillStyle = glow
+        ctx.beginPath()
+        ctx.arc(px, py, 8, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      // Draw agent nodes
+      agents.forEach((agent, i) => {
+        const x = agent.x * w
+        const y = agent.y * h
+        const pulse = Math.sin(frame * 0.03 + i) * 3
+
+        // Outer ring
+        ctx.strokeStyle = i === 4 ? 'rgba(232, 228, 221, 0.3)' : 'rgba(230, 59, 46, 0.3)'
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.arc(x, y, 18 + pulse, 0, Math.PI * 2)
+        ctx.stroke()
+
+        // Inner dot
+        ctx.fillStyle = i === 4 ? '#E8E4DD' : '#E63B2E'
+        ctx.beginPath()
+        ctx.arc(x, y, 5, 0, Math.PI * 2)
+        ctx.fill()
+
+        // Label
+        ctx.fillStyle = 'rgba(245, 243, 238, 0.5)'
+        ctx.font = '9px "Space Mono", monospace'
+        ctx.textAlign = 'center'
+        ctx.fillText(agent.name, x, y + 32)
+      })
+
+      // Bottom status bar
+      const barY = h * 0.78
+      ctx.fillStyle = 'rgba(245, 243, 238, 0.03)'
+      ctx.fillRect(w * 0.08, barY, w * 0.84, 1)
+
+      const statuses = ['ROUTING', 'BUILDING', 'DEPLOYING', 'COMPLETE']
+      const activeIdx = Math.floor((frame * 0.01) % 4)
+      statuses.forEach((s, i) => {
+        const sx = w * (0.15 + i * 0.22)
+        ctx.fillStyle = i === activeIdx ? 'rgba(230, 59, 46, 0.9)' : 'rgba(245, 243, 238, 0.15)'
+        ctx.font = `${i === activeIdx ? 'bold ' : ''}9px "Space Mono", monospace`
+        ctx.textAlign = 'center'
+        ctx.fillText(s, sx, barY + 20)
+        if (i === activeIdx) {
+          ctx.fillStyle = 'rgba(230, 59, 46, 0.15)'
+          ctx.fillRect(sx - 30, barY + 8, 60, 16)
+        }
+      })
+
+      frame++
+      animId = requestAnimationFrame(draw)
+    }
+    draw()
+    return () => cancelAnimationFrame(animId)
+  }, [agents])
+
+  return <canvas ref={canvasRef} className="w-full h-full" />
 }
 
-/* Dashboard mockup */
-function DashboardMockup({ mockup }) {
+/* ============================================
+   LIVE MOCKUP: Mission Control Dashboard
+   ============================================ */
+function DashboardLiveMockup() {
+  const [counters, setCounters] = useState({ tasks: 0, agents: 0, uptime: 0 })
+  const [feed, setFeed] = useState([])
+  const [bars, setBars] = useState(Array(16).fill(20))
+  const feedIdx = useRef(0)
+
+  const feedMessages = [
+    { agent: 'Jarvis', msg: 'Routed task #847 to Echo', type: 'route' },
+    { agent: 'Echo', msg: 'Draft complete — 1,200 words', type: 'done' },
+    { agent: 'Luna', msg: 'Generated 3 assets via Nano Banana', type: 'done' },
+    { agent: 'Sola', msg: 'SEO score: 94/100', type: 'metric' },
+    { agent: 'Quinn', msg: 'Approval: blog post #23', type: 'approve' },
+    { agent: 'Dash', msg: 'Published to LinkedIn', type: 'done' },
+    { agent: 'Jarvis', msg: 'Memory: stored semantic context', type: 'route' },
+    { agent: 'System', msg: 'All 6 agents operational', type: 'metric' },
+  ]
+
+  // Animate counters
+  useEffect(() => {
+    const targets = { tasks: 847, agents: 6, uptime: 99.7 }
+    let frame = 0
+    const interval = setInterval(() => {
+      frame++
+      const p = Math.min(frame / 40, 1)
+      const ease = 1 - Math.pow(1 - p, 3)
+      setCounters({
+        tasks: Math.floor(targets.tasks * ease),
+        agents: Math.floor(targets.agents * ease),
+        uptime: +(targets.uptime * ease).toFixed(1),
+      })
+      if (p >= 1) clearInterval(interval)
+    }, 40)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Animate feed
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const msg = feedMessages[feedIdx.current % feedMessages.length]
+      setFeed((prev) => [msg, ...prev].slice(0, 5))
+      feedIdx.current++
+    }, 2200)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Animate chart bars
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBars((prev) =>
+        prev.map((v) => Math.max(15, Math.min(95, v + (Math.random() - 0.45) * 20)))
+      )
+    }, 800)
+    return () => clearInterval(interval)
+  }, [])
+
+  const typeColor = { route: 'text-signal', done: 'text-green-400', metric: 'text-offwhite/60', approve: 'text-yellow-400' }
+
   return (
-    <div className="w-full h-full bg-ink rounded-2xl overflow-hidden flex flex-col">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-ink border-b border-offwhite/5">
-        <span className="w-2 h-2 rounded-full bg-signal/60" />
-        <span className="w-2 h-2 rounded-full bg-ink/40 border border-offwhite/10" />
-        <span className="w-2 h-2 rounded-full bg-ink/40 border border-offwhite/10" />
-        <span className="font-mono text-[9px] text-offwhite/20 ml-2">{mockup.label}</span>
-      </div>
-      {/* Dashboard layout */}
-      <div className="flex-1 p-3 flex gap-2">
-        {/* Sidebar */}
-        <div className="w-1/4 bg-offwhite/5 rounded-lg p-2 flex flex-col gap-1.5">
-          <div className="h-1.5 w-3/4 rounded-full bg-signal/30" />
-          <div className="h-1 w-full rounded-full bg-offwhite/5" />
-          <div className="h-1 w-5/6 rounded-full bg-offwhite/5" />
-          <div className="h-1 w-2/3 rounded-full bg-offwhite/8" />
-          <div className="h-1 w-4/5 rounded-full bg-offwhite/5" />
-        </div>
-        {/* Main content */}
-        <div className="flex-1 flex flex-col gap-2">
-          {/* Stat cards */}
-          <div className="flex gap-2">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className="flex-1 bg-offwhite/5 rounded-lg p-2">
-                <div className="h-1 w-1/2 rounded-full bg-offwhite/10 mb-1.5" />
-                <div className="h-2 w-3/4 rounded-full bg-signal/20" />
-              </div>
-            ))}
+    <div className="w-full h-full flex flex-col gap-3 p-1">
+      {/* Stat row */}
+      <div className="flex gap-3">
+        {[
+          { label: 'Tasks routed', value: counters.tasks.toLocaleString(), accent: false },
+          { label: 'Active agents', value: counters.agents, accent: true },
+          { label: 'Uptime %', value: counters.uptime, accent: false },
+        ].map((stat) => (
+          <div key={stat.label} className={`flex-1 rounded-xl p-3 ${stat.accent ? 'bg-signal/10 border border-signal/20' : 'bg-offwhite/[0.04] border border-offwhite/[0.06]'}`}>
+            <span className="font-mono text-[9px] text-offwhite/30 block mb-1">{stat.label}</span>
+            <span className={`font-heading font-bold text-lg ${stat.accent ? 'text-signal' : 'text-offwhite/80'}`}>
+              {stat.value}
+            </span>
           </div>
-          {/* Chart area */}
-          <div className="flex-1 bg-offwhite/5 rounded-lg p-2 flex items-end gap-1">
-            {[40, 65, 45, 80, 55, 70, 90, 60, 75, 50, 85, 65].map((h, i) => (
+        ))}
+      </div>
+
+      {/* Bottom: chart + feed */}
+      <div className="flex-1 flex gap-3 min-h-0">
+        {/* Chart */}
+        <div className="flex-1 bg-offwhite/[0.03] border border-offwhite/[0.05] rounded-xl p-3 flex flex-col">
+          <span className="font-mono text-[8px] text-offwhite/20 mb-2">THROUGHPUT</span>
+          <div className="flex-1 flex items-end gap-[3px]">
+            {bars.map((h, i) => (
               <div
                 key={i}
-                className="flex-1 bg-signal/20 rounded-t-sm"
-                style={{ height: `${h}%` }}
+                className="flex-1 rounded-t-sm transition-all duration-700 ease-out"
+                style={{
+                  height: `${h}%`,
+                  background: h > 70 ? 'rgba(230,59,46,0.5)' : 'rgba(232,228,221,0.12)',
+                }}
               />
             ))}
           </div>
         </div>
+
+        {/* Live feed */}
+        <div className="w-2/5 bg-offwhite/[0.03] border border-offwhite/[0.05] rounded-xl p-3 flex flex-col overflow-hidden">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-signal pulse-dot" />
+            <span className="font-mono text-[8px] text-signal">LIVE</span>
+          </div>
+          <div className="flex-1 flex flex-col gap-1.5 overflow-hidden">
+            {feed.map((item, i) => (
+              <div
+                key={`${item.msg}-${i}`}
+                className={`font-mono text-[9px] leading-tight transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'opacity-40'}`}
+              >
+                <span className={typeColor[item.type]}>{item.agent}</span>
+                <span className="text-offwhite/25"> {item.msg}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
 }
 
-/* Table mockup */
-function TableMockup({ mockup }) {
-  return (
-    <div className="w-full h-full bg-ink rounded-2xl overflow-hidden flex flex-col">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-ink border-b border-offwhite/5">
-        <span className="w-2 h-2 rounded-full bg-signal/60" />
-        <span className="w-2 h-2 rounded-full bg-ink/40 border border-offwhite/10" />
-        <span className="w-2 h-2 rounded-full bg-ink/40 border border-offwhite/10" />
-        <span className="font-mono text-[9px] text-offwhite/20 ml-2">{mockup.label}</span>
-      </div>
-      {/* Table layout */}
-      <div className="flex-1 p-3 flex flex-col gap-1">
-        {/* Header row */}
-        <div className="flex gap-2 pb-1.5 border-b border-offwhite/5">
-          <div className="w-1/4 h-1.5 rounded-full bg-offwhite/15" />
-          <div className="w-1/5 h-1.5 rounded-full bg-offwhite/15" />
-          <div className="w-1/6 h-1.5 rounded-full bg-offwhite/15" />
-          <div className="flex-1" />
-          <div className="w-1/6 h-1.5 rounded-full bg-signal/25" />
-        </div>
-        {/* Data rows */}
-        {[1, 2, 3, 4, 5].map((n) => (
-          <div key={n} className="flex gap-2 py-1 border-b border-offwhite/[0.03]">
-            <div className="w-1/4 h-1 rounded-full bg-offwhite/8" />
-            <div className="w-1/5 h-1 rounded-full bg-offwhite/5" />
-            <div className="w-1/6 h-1 rounded-full bg-offwhite/5" />
-            <div className="flex-1" />
-            <div
-              className={`w-1/6 h-1 rounded-full ${
-                n <= 3 ? 'bg-green-500/20' : 'bg-offwhite/8'
-              }`}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+/* ============================================
+   MAIN PROJECTS SECTION
+   ============================================ */
+const projects = [
+  {
+    id: 'factory',
+    title: 'Autonomous App Factory',
+    year: '2025',
+    tagline: 'AI agents that build software without human orchestration.',
+    description:
+      'Multi-agent pipeline where AI makes every routing and dispatch decision. Produces Swift code, App Store metadata, pricing strategy, and marketing copy from a single input. No human in the loop.',
+    tags: ['Python', 'Multi-Agent', 'LLM Orchestration', 'Prompt Chaining'],
+    github: 'https://github.com/u-kaushik',
+    live: '#',
+    icon: Bot,
+    bg: 'bg-ink',
+    accent: 'signal',
+    MockupComponent: AgentPipelineMockup,
+  },
+  {
+    id: 'mission',
+    title: 'Mission Control',
+    year: '2025',
+    tagline: 'A personal AI operating system. One interface for everything.',
+    description:
+      'Live dashboard integrating 6 AI agents, task orchestration, semantic memory, and EOS business execution. Jarvis coordinates via Telegram. The system gets smarter over time.',
+    tags: ['TypeScript', 'React', 'Supabase', 'Semantic Memory', 'EOS'],
+    github: 'https://github.com/u-kaushik',
+    live: '#',
+    icon: LayoutDashboard,
+    bg: 'bg-[#0D0D14]',
+    accent: 'signal',
+    MockupComponent: DashboardLiveMockup,
+  },
+]
 
 export default function Projects() {
   const sectionRef = useRef(null)
+  const cardRefs = useRef([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.project-row', {
-        y: 40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-        },
+      cardRefs.current.forEach((card) => {
+        if (!card) return
+        const content = card.querySelector('.project-content')
+        const mockup = card.querySelector('.project-mockup')
+        const tags = card.querySelectorAll('.project-tag')
+
+        gsap.from(content, {
+          x: -60,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 60%',
+          },
+        })
+
+        gsap.from(mockup, {
+          x: 60,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 60%',
+          },
+        })
+
+        gsap.from(tags, {
+          y: 15,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 50%',
+          },
+        })
       })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
 
   return (
-    <section id="projects" ref={sectionRef} className="px-6 md:px-16 lg:px-24 py-24 md:py-32">
-      <div className="mb-16">
+    <section id="projects" ref={sectionRef}>
+      {/* Section label */}
+      <div className="px-6 md:px-16 lg:px-24 pt-24 pb-8">
         <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase">
           Selected Work
         </span>
       </div>
 
-      <div className="space-y-6">
-        {projects.map((project) => {
-          const Icon = project.icon
-          const MockupComponent =
-            project.mockup.type === 'dashboard'
-              ? DashboardMockup
-              : project.mockup.type === 'table'
-                ? TableMockup
-                : CodeMockup
-          return (
-            <div
-              key={project.title}
-              className="project-row group bg-offwhite border border-paper rounded-[2rem] p-6 md:p-8 transition-all duration-300 hover:border-signal/30 hover:shadow-md overflow-hidden"
-            >
-              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-                {/* Mockup preview */}
-                <div className="lg:w-2/5 h-[180px] md:h-[200px] flex-shrink-0">
-                  <MockupComponent mockup={project.mockup} />
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <Icon size={18} className="text-signal" />
-                      <span className="font-mono text-[10px] text-ink/30">
-                        {project.year}
-                      </span>
-                    </div>
-                    <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 group-hover:text-signal transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="font-heading text-sm text-ink/60 leading-relaxed mb-4">
-                      {project.description}
-                    </p>
+      {projects.map((project, i) => {
+        const Icon = project.icon
+        return (
+          <div
+            key={project.id}
+            ref={(el) => (cardRefs.current[i] = el)}
+            className={`${project.bg} ${i === 0 ? 'rounded-t-[3rem]' : ''} ${i === projects.length - 1 ? 'rounded-b-[3rem]' : ''}`}
+          >
+            <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 py-20 md:py-28">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {/* Content — left on even, right on odd */}
+                <div className={`project-content ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className="flex items-center gap-3 mb-6">
+                    <Icon size={20} className="text-signal" />
+                    <span className="font-mono text-[10px] text-offwhite/30 tracking-wider">
+                      {project.year}
+                    </span>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-[10px] text-ink/40 bg-paper px-3 py-1 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  <h3 className="font-heading font-bold text-3xl md:text-4xl text-offwhite mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="font-drama italic text-signal text-lg md:text-xl mb-6">
+                    {project.tagline}
+                  </p>
+                  <p className="font-heading text-sm text-offwhite/50 leading-relaxed mb-8 max-w-md">
+                    {project.description}
+                  </p>
 
-                    <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="lift w-9 h-9 rounded-full bg-paper flex items-center justify-center text-ink/40 hover:text-ink hover:bg-ink/5 transition-colors"
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="project-tag font-mono text-[10px] text-offwhite/30 bg-offwhite/[0.05] border border-offwhite/[0.08] px-3 py-1.5 rounded-full"
                       >
-                        <Github size={15} />
-                      </a>
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="lift w-9 h-9 rounded-full bg-paper flex items-center justify-center text-ink/40 hover:text-signal hover:bg-signal/5 transition-colors"
-                      >
-                        <ExternalLink size={15} />
-                      </a>
-                    </div>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex items-center gap-4">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="lift inline-flex items-center gap-2 font-heading text-sm text-offwhite/50 hover:text-offwhite transition-colors"
+                    >
+                      <Github size={15} />
+                      <span>Source</span>
+                    </a>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="lift inline-flex items-center gap-2 font-heading text-sm text-signal hover:text-offwhite transition-colors"
+                    >
+                      <span>View project</span>
+                      <ArrowRight size={14} />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Mockup — large, dark, animated */}
+                <div className={`project-mockup ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <div className="bg-offwhite/[0.03] border border-offwhite/[0.06] rounded-[2rem] p-4 md:p-5 h-[300px] md:h-[380px]">
+                    <project.MockupComponent />
                   </div>
                 </div>
               </div>
             </div>
-          )
-        })}
-      </div>
+          </div>
+        )
+      })}
     </section>
   )
 }
