@@ -7,9 +7,9 @@ gsap.registerPlugin(ScrollTrigger)
 /* ---- Card 1: Diagnostic Shuffler ---- */
 function ShufflerCard() {
   const labels = [
-    { title: 'Frontend', sub: 'Design to deployed in hours' },
-    { title: 'Backend', sub: 'API to production, same day' },
-    { title: 'AI Pipeline', sub: 'Autonomous by morning' },
+    { title: 'Frontend', sub: 'Concept to components in hours' },
+    { title: 'Backend', sub: 'API + auth + deploy, same sprint' },
+    { title: 'AI Pipeline', sub: 'Agents wired and running' },
   ]
   const [order, setOrder] = useState([0, 1, 2])
 
@@ -25,19 +25,19 @@ function ShufflerCard() {
   }, [])
 
   return (
-    <div className="bg-offwhite border border-paper rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
-      <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase mb-2">
+    <div className="bg-[#1A1210] border border-offwhite/[0.06] rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
+      <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase mb-2">
         01
       </span>
-      <h3 className="font-heading font-bold text-xl mb-2">Solo ≠ Slow</h3>
-      <p className="font-heading text-sm text-ink/60 mb-6">
-        One developer. Team-grade output. I've shipped multi-tenant SaaS, autonomous AI pipelines, and production apps — each in weeks.
+      <h3 className="font-heading font-bold text-xl text-offwhite mb-2">Idea to Production</h3>
+      <p className="font-heading text-sm text-offwhite/50 mb-6">
+        You describe the vision. I handle frontend, backend, AI, and deployment. Full-stack means the whole thing ships together, fast.
       </p>
       <div className="relative flex-1 min-h-[140px]">
         {order.map((idx, pos) => (
           <div
             key={idx}
-            className="absolute inset-x-0 bg-paper border border-ink/5 rounded-2xl px-5 py-4 transition-all duration-500"
+            className="absolute inset-x-0 bg-offwhite/[0.04] border border-offwhite/[0.08] rounded-2xl px-5 py-4 transition-all duration-500"
             style={{
               top: `${pos * 16}px`,
               zIndex: 3 - pos,
@@ -46,10 +46,10 @@ function ShufflerCard() {
               transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
           >
-            <span className="font-heading font-semibold text-sm">
+            <span className="font-heading font-semibold text-sm text-offwhite">
               {labels[idx].title}
             </span>
-            <span className="font-mono text-[11px] text-ink/50 ml-3">
+            <span className="font-mono text-[11px] text-offwhite/40 ml-3">
               {labels[idx].sub}
             </span>
           </div>
@@ -62,13 +62,13 @@ function ShufflerCard() {
 /* ---- Card 2: Telemetry Typewriter ---- */
 function TypewriterCard() {
   const messages = [
-    '> Agent Jarvis: routing task to Echo...',
-    '> Pipeline: 4 artifacts generated',
-    '> Memory: semantic context updated',
-    '> Scraper: 12 leads enriched',
-    '> Deploy: production build live',
-    '> Agent Luna: 3 assets rendered',
-    '> System: all agents operational',
+    '> Jarvis: new task from client brief...',
+    '> Sola: researching competitor landscape',
+    '> Archie: architecture drafted, 3 services',
+    '> Kai: build complete, 12 components',
+    '> Iris: code review passed, 0 issues',
+    '> Luna: 3 brand assets generated',
+    '> Dash: deployed to production',
   ]
   const [lines, setLines] = useState([])
   const [currentMsg, setCurrentMsg] = useState('')
@@ -95,9 +95,9 @@ function TypewriterCard() {
   }, [charIdx, msgIdx])
 
   return (
-    <div className="bg-offwhite border border-paper rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
+    <div className="bg-[#1A1210] border border-offwhite/[0.06] rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
       <div className="flex items-center gap-2 mb-2">
-        <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase">
+        <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase">
           02
         </span>
         <span className="ml-auto flex items-center gap-1.5">
@@ -105,19 +105,19 @@ function TypewriterCard() {
           <span className="font-mono text-[10px] text-signal">Live Feed</span>
         </span>
       </div>
-      <h3 className="font-heading font-bold text-xl mb-2">
-        AI Runs the Show
+      <h3 className="font-heading font-bold text-xl text-offwhite mb-2">
+        AI-Native Architecture
       </h3>
-      <p className="font-heading text-sm text-ink/60 mb-6">
-        I don't bolt AI onto existing stacks. My systems have agents making routing decisions, pipelines handling orchestration, humans intervening only when they want to.
+      <p className="font-heading text-sm text-offwhite/50 mb-6">
+        I build systems where AI agents handle research, drafting, review, and deployment. Not AI bolted on after the fact — designed in from the start.
       </p>
-      <div className="flex-1 bg-ink rounded-xl p-4 font-mono text-[11px] leading-relaxed overflow-hidden">
+      <div className="flex-1 bg-[#0D0908] rounded-xl p-4 font-mono text-[11px] leading-relaxed overflow-hidden border border-offwhite/[0.04]">
         {lines.map((line, i) => (
-          <div key={i} className="text-offwhite/50">
+          <div key={i} className="text-offwhite/40">
             {line}
           </div>
         ))}
-        <div className="text-offwhite">
+        <div className="text-offwhite/80">
           {currentMsg}
           <span className="cursor-blink text-signal">_</span>
         </div>
@@ -136,23 +136,14 @@ function SchedulerCard() {
 
   useEffect(() => {
     const sequence = [
-      // cursor enters
       () => setCursorPos({ x: 10, y: 50, visible: true }),
-      // move to Tuesday
       () => setCursorPos({ x: 95, y: 20, visible: true }),
-      // click Tuesday
       () => setActiveDay(2),
-      // move to Thursday
       () => setCursorPos({ x: 175, y: 20, visible: true }),
-      // click Thursday
       () => setActiveDay(4),
-      // move to Save
       () => setCursorPos({ x: 200, y: 55, visible: true }),
-      // click Save
       () => setSaved(true),
-      // cursor fades
       () => setCursorPos({ x: 260, y: 55, visible: false }),
-      // reset
       () => {
         setActiveDay(-1)
         setSaved(false)
@@ -169,16 +160,15 @@ function SchedulerCard() {
   }, [step])
 
   return (
-    <div className="bg-offwhite border border-paper rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
-      <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase mb-2">
+    <div className="bg-[#1A1210] border border-offwhite/[0.06] rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
+      <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase mb-2">
         03
       </span>
-      <h3 className="font-heading font-bold text-xl mb-2">Built to Earn</h3>
-      <p className="font-heading text-sm text-ink/60 mb-6">
-        A decade of client work taught me something most developers never learn: code that doesn't move a business metric is expensive typing.
+      <h3 className="font-heading font-bold text-xl text-offwhite mb-2">Commercial Instinct</h3>
+      <p className="font-heading text-sm text-offwhite/50 mb-6">
+        Ten years of working directly with business owners means every technical decision is anchored to a commercial outcome. I build what matters.
       </p>
-      <div className="flex-1 relative bg-paper rounded-xl p-4 overflow-hidden">
-        {/* Week grid */}
+      <div className="flex-1 relative bg-offwhite/[0.03] border border-offwhite/[0.06] rounded-xl p-4 overflow-hidden">
         <div className="flex gap-2 mb-3">
           {days.map((d, i) => (
             <div
@@ -186,22 +176,20 @@ function SchedulerCard() {
               className={`w-9 h-9 rounded-lg flex items-center justify-center font-mono text-xs transition-all duration-300 ${
                 i === activeDay || (activeDay >= 2 && (i === 2 || i === 4) && i <= activeDay)
                   ? 'bg-signal text-offwhite scale-95'
-                  : 'bg-offwhite text-ink/50'
+                  : 'bg-offwhite/[0.05] text-offwhite/40'
               }`}
             >
               {d}
             </div>
           ))}
         </div>
-        {/* Save button */}
         <div
           className={`inline-flex items-center px-4 py-1.5 rounded-full font-mono text-[10px] transition-all duration-300 ${
-            saved ? 'bg-signal text-offwhite' : 'bg-ink/5 text-ink/40'
+            saved ? 'bg-signal text-offwhite' : 'bg-offwhite/[0.05] text-offwhite/30'
           }`}
         >
           {saved ? 'Saved' : 'Save'}
         </div>
-        {/* Animated cursor */}
         <svg
           className="absolute pointer-events-none transition-all duration-500 ease-out"
           style={{
@@ -216,8 +204,8 @@ function SchedulerCard() {
         >
           <path
             d="M1 1L1 16.5L5.5 12.5L9 20L12 18.5L8.5 11L14 10.5L1 1Z"
-            fill="#111111"
-            stroke="#F5F3EE"
+            fill="#F5F3EE"
+            stroke="#110C0A"
             strokeWidth="1.5"
           />
         </svg>
@@ -250,7 +238,7 @@ export default function Features() {
   return (
     <section ref={sectionRef} className="px-6 md:px-16 lg:px-24 py-24 md:py-32">
       <div className="mb-12">
-        <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase">
+        <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase">
           What I bring
         </span>
       </div>

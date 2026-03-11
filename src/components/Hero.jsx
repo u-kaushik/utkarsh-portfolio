@@ -39,32 +39,32 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-[100dvh] w-full overflow-hidden"
     >
-      {/* Background image */}
+      {/* Background image — Mars-like terrain */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1920&q=80)',
+            'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80)',
         }}
       />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/30" />
+      {/* Gradient overlay — warm dark */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#110C0A] via-[#110C0A]/85 to-[#110C0A]/40" />
 
       {/* Content — bottom-left third */}
       <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-16 lg:px-24 pb-16 md:pb-24 max-w-4xl">
         <div className="overflow-hidden">
           <h1 className="hero-line font-heading font-bold text-offwhite text-3xl md:text-5xl tracking-tight leading-tight">
-            Ship the
+            Build the
           </h1>
         </div>
         <div className="overflow-hidden">
           <h1 className="hero-line font-drama italic text-signal text-6xl md:text-[8rem] lg:text-[10rem] leading-[0.9] -mt-1 md:-mt-3">
-            impossible.
+            future.
           </h1>
         </div>
 
         <p className="hero-sub font-heading text-offwhite/70 text-base md:text-lg mt-6 md:mt-8 max-w-lg leading-relaxed">
-          I'm Utkarsh. Full-stack developer and AI systems architect. I work alone and deliver what teams struggle to finish. Based in the UK.
+          I'm Utkarsh. I turn ambitious ideas into production software — full-stack products, AI systems, and automation pipelines. Tell me what you're imagining. I'll make it real.
         </p>
 
         <div className="hero-cta mt-8">

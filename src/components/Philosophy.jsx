@@ -36,14 +36,14 @@ export default function Philosophy() {
     <section
       id="philosophy"
       ref={sectionRef}
-      className="relative py-32 md:py-44 px-6 md:px-16 lg:px-24 bg-ink overflow-hidden"
+      className="relative py-32 md:py-44 px-6 md:px-16 lg:px-24 bg-[#1A0F0D] overflow-hidden"
     >
-      {/* Parallax texture */}
+      {/* Mars dust texture */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.07]"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.06]"
         style={{
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1553531384-411a247ccd73?auto=format&fit=crop&w=1920&q=80)',
+            'url(https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=1920&q=80)',
         }}
       />
 
@@ -52,16 +52,16 @@ export default function Philosophy() {
           Philosophy
         </span>
 
-        <p className="font-heading text-offwhite/40 text-lg md:text-2xl mb-8 leading-relaxed">
-          {splitWords('Most developers build features. They write clean code, deploy on time, close tickets. The work is competent and forgettable.')}
+        <p className="font-heading text-offwhite/35 text-lg md:text-2xl mb-8 leading-relaxed">
+          {splitWords('You describe what you\'re imagining. The product, the system, the workflow. Most of the time, the gap between that conversation and a working prototype is months of meetings and handoffs.')}
         </p>
 
         <p className="font-heading text-offwhite text-2xl md:text-4xl lg:text-5xl leading-tight">
-          {splitWords('I ship')}
+          {splitWords('I close that gap. Your')}
           <span className="reveal-word inline-block mr-[0.3em]">
-            <span className="font-drama italic text-signal">products</span>
+            <span className="font-drama italic text-signal">imagination</span>
           </span>
-          {splitWords('that make the business case obvious.')}
+          {splitWords('becomes production software.')}
         </p>
       </div>
     </section>

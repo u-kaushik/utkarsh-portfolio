@@ -26,14 +26,14 @@ export default function Navbar() {
     <nav
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
         scrolled
-          ? 'bg-offwhite/60 backdrop-blur-xl border border-paper/80 shadow-lg'
+          ? 'bg-[#1A1210]/80 backdrop-blur-xl border border-offwhite/[0.08] shadow-lg'
           : 'bg-transparent'
       } rounded-full px-6 py-3 flex items-center gap-8`}
     >
       <a
         href="#"
         className={`font-heading font-bold text-sm tracking-tight transition-colors duration-500 ${
-          scrolled ? 'text-ink' : 'text-offwhite'
+          scrolled ? 'text-offwhite' : 'text-offwhite'
         }`}
       >
         UK.
@@ -46,7 +46,7 @@ export default function Navbar() {
             key={link.label}
             href={link.href}
             className={`lift font-heading text-sm tracking-tight transition-colors duration-500 ${
-              scrolled ? 'text-ink/70 hover:text-ink' : 'text-offwhite/70 hover:text-offwhite'
+              scrolled ? 'text-offwhite/70 hover:text-offwhite' : 'text-offwhite/70 hover:text-offwhite'
             }`}
           >
             {link.label}
@@ -62,7 +62,7 @@ export default function Navbar() {
             : 'bg-offwhite/10 text-offwhite border border-offwhite/30'
         }`}
       >
-        <span className="btn-bg bg-ink rounded-full" />
+        <span className="btn-bg bg-[#1A1210] rounded-full" />
         <span className="relative z-10">Get in touch</span>
       </a>
 
@@ -70,7 +70,7 @@ export default function Navbar() {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className={`md:hidden font-mono text-xs transition-colors duration-500 ${
-          scrolled ? 'text-ink' : 'text-offwhite'
+          scrolled ? 'text-offwhite' : 'text-offwhite'
         }`}
       >
         {mobileOpen ? '[CLOSE]' : '[MENU]'}
@@ -78,13 +78,13 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 bg-offwhite/95 backdrop-blur-xl border border-paper rounded-2xl-plus p-6 flex flex-col gap-4 min-w-[200px] md:hidden">
+        <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 bg-[#1A1210]/95 backdrop-blur-xl border border-offwhite/[0.08] rounded-2xl p-6 flex flex-col gap-4 min-w-[200px] md:hidden">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="font-heading text-sm text-ink/70 hover:text-ink"
+              className="font-heading text-sm text-offwhite/70 hover:text-offwhite"
             >
               {link.label}
             </a>
@@ -94,7 +94,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
             className="btn-magnetic inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-heading font-semibold bg-signal text-offwhite"
           >
-            <span className="btn-bg bg-ink rounded-full" />
+            <span className="btn-bg bg-[#1A1210] rounded-full" />
             <span className="relative z-10">Get in touch</span>
           </a>
         </div>

@@ -254,14 +254,14 @@ const projects = [
     id: 'factory',
     title: 'Autonomous App Factory',
     year: '2025',
-    tagline: 'AI agents that build software without human orchestration.',
+    tagline: 'From client brief to production app — fully automated.',
     description:
-      'Multi-agent pipeline where AI makes every routing and dispatch decision. Produces Swift code, App Store metadata, pricing strategy, and marketing copy from a single input. No human in the loop.',
+      'A multi-agent pipeline that transforms a single brief into production software. AI agents handle research, architecture, code generation, review, and deployment — delivering what traditionally takes a team of six.',
     tags: ['Python', 'Multi-Agent', 'LLM Orchestration', 'Prompt Chaining'],
     github: 'https://github.com/u-kaushik/Auto-App-Factory-Portfolio',
     live: 'https://demoautoappfactory.netlify.app/',
     icon: Bot,
-    bg: 'bg-ink',
+    bg: 'bg-[#0D0908]',
     accent: 'signal',
     MockupComponent: AgentPipelineMockup,
   },
@@ -269,9 +269,9 @@ const projects = [
     id: 'mission',
     title: 'Mission Control',
     year: '2025',
-    tagline: 'A personal AI operating system. One interface for everything.',
+    tagline: 'One dashboard to run an entire AI-powered operation.',
     description:
-      'Live dashboard integrating 9 AI agents, task orchestration, semantic memory, and EOS business execution. Jarvis coordinates via Telegram. The system gets smarter over time.',
+      'A live command centre integrating 9 AI agents, task orchestration, semantic memory, and business execution. Jarvis coordinates every workflow so the operator can focus on strategy, not admin.',
     tags: ['TypeScript', 'React', 'Supabase', 'Semantic Memory', 'EOS'],
     github: 'https://github.com/u-kaushik/Mission-Control-Portfolio',
     live: 'https://demomissioncontrol.netlify.app/',
@@ -336,7 +336,7 @@ export default function Projects() {
     <section id="projects" ref={sectionRef}>
       {/* Section label */}
       <div className="px-6 md:px-16 lg:px-24 pt-24 pb-8">
-        <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase">
+        <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase">
           Selected Work
         </span>
       </div>

@@ -1,3 +1,4 @@
+import Starfield from './components/Starfield'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -10,14 +11,17 @@ import Footer from './components/Footer'
 export default function App() {
   return (
     <div className="relative">
-      <Navbar />
-      <Hero />
-      <Features />
-      <Philosophy />
-      <Protocol />
-      <Projects />
-      <Contact />
-      <Footer />
+      <Starfield />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Features />
+        <Philosophy />
+        <Protocol />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   )
 }

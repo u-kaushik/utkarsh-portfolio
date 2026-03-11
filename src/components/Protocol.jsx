@@ -7,23 +7,23 @@ gsap.registerPlugin(ScrollTrigger)
 const steps = [
   {
     num: '01',
-    title: 'Understand',
+    title: 'Listen',
     description:
-      'Not the technical problem. The business one. What does success look like in revenue, users, or hours saved? Everything starts here.',
+      'We start with your vision, not a spec doc. What are you trying to build? Who is it for? What does success look like? I need to understand the problem the way you see it.',
     animation: 'helix',
   },
   {
     num: '02',
     title: 'Build',
     description:
-      'AI-augmented, full-stack, production-grade. Design through deployment in one pair of hands. No handoffs, no waiting on anyone.',
+      'AI-augmented, full-stack, production-grade. I handle the architecture, the frontend, the backend, the deployment. You get progress you can see and touch, not status updates.',
     animation: 'scanner',
   },
   {
     num: '03',
-    title: 'Prove',
+    title: 'Deliver',
     description:
-      "Live URLs. Real users. Every project in my portfolio has a working demo you can touch. I don't do mockups.",
+      'Working software with live URLs. Every project I build is production-ready — real authentication, real data, real infrastructure. Ready for users from day one.',
     animation: 'waveform',
   },
 ]
@@ -61,7 +61,6 @@ function HelixCanvas() {
         ctx.stroke()
       }
 
-      // Connection lines
       ctx.strokeStyle = 'rgba(230, 59, 46, 0.1)'
       for (let i = 0; i <= 12; i++) {
         const t = i / 12
@@ -103,7 +102,6 @@ function ScannerCanvas() {
       const h = canvas.offsetHeight
       ctx.clearRect(0, 0, w, h)
 
-      // Dot grid
       const gap = 24
       const scanY = (frame * 1.5) % h
       for (let x = gap; x < w; x += gap) {
@@ -113,7 +111,7 @@ function ScannerCanvas() {
           ctx.fillStyle =
             glow > 0
               ? `rgba(230, 59, 46, ${0.2 + glow * 0.8})`
-              : 'rgba(17, 17, 17, 0.08)'
+              : 'rgba(245, 243, 238, 0.06)'
           const r = glow > 0 ? 2.5 + glow * 1.5 : 2
           ctx.beginPath()
           ctx.arc(x, y, r, 0, Math.PI * 2)
@@ -121,7 +119,6 @@ function ScannerCanvas() {
         }
       }
 
-      // Scan line
       ctx.strokeStyle = 'rgba(230, 59, 46, 0.6)'
       ctx.lineWidth = 1
       ctx.beginPath()
@@ -183,9 +180,9 @@ function WaveformSVG() {
         y1="60"
         x2="400"
         y2="60"
-        stroke="#111111"
+        stroke="#F5F3EE"
         strokeWidth="0.5"
-        opacity="0.1"
+        opacity="0.06"
       />
     </svg>
   )
@@ -236,10 +233,10 @@ export default function Protocol() {
   }, [])
 
   return (
-    <section id="protocol" ref={sectionRef} className="bg-paper/60 py-24 md:py-32">
+    <section id="protocol" ref={sectionRef} className="py-24 md:py-32">
       <div className="px-6 md:px-16 lg:px-24 mb-16 max-w-7xl mx-auto">
-        <span className="font-mono text-[10px] text-ink/40 tracking-widest uppercase">
-          How I Work
+        <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase">
+          How We Work Together
         </span>
       </div>
 
@@ -251,17 +248,17 @@ export default function Protocol() {
             ref={(el) => (cardsRef.current[i] = el)}
             className="h-screen flex items-center justify-center px-6 md:px-16 lg:px-24"
           >
-            <div className="w-full max-w-6xl mx-auto bg-offwhite border border-paper/80 rounded-[3rem] p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 shadow-md">
+            <div className="w-full max-w-6xl mx-auto bg-[#1A1210] border border-offwhite/[0.06] rounded-[3rem] p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 shadow-lg">
               <div className="flex flex-col justify-center">
                 <span className="font-mono text-signal text-sm mb-4">{step.num}</span>
-                <h3 className="font-heading font-bold text-4xl md:text-6xl mb-4">
+                <h3 className="font-heading font-bold text-4xl md:text-6xl text-offwhite mb-4">
                   {step.title}
                 </h3>
-                <p className="font-heading text-ink/60 text-base md:text-lg leading-relaxed">
+                <p className="font-heading text-offwhite/50 text-base md:text-lg leading-relaxed">
                   {step.description}
                 </p>
               </div>
-              <div className="h-[250px] md:h-[350px] rounded-[2rem] bg-ink/[0.03] overflow-hidden">
+              <div className="h-[250px] md:h-[350px] rounded-[2rem] bg-[#0D0908] border border-offwhite/[0.04] overflow-hidden">
                 <AnimComponent />
               </div>
             </div>
