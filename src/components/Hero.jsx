@@ -39,14 +39,16 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-[100dvh] w-full overflow-hidden"
     >
-      {/* Background image — slowly spinning globe */}
+      {/* Background video — ISS Earth orbit */}
       <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="hero-globe absolute inset-[-12.5%] w-[125%] h-[125%] bg-cover bg-center"
-          style={{
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80)',
-          }}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/earth-hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
         />
       </div>
       {/* Gradient overlay — warm dark */}
