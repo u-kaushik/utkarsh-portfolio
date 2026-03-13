@@ -39,14 +39,16 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-[100dvh] w-full overflow-hidden"
     >
-      {/* Background image — Mars-like terrain */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80)',
-        }}
-      />
+      {/* Background image — slowly spinning globe */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="hero-globe absolute inset-[-12.5%] w-[125%] h-[125%] bg-cover bg-center"
+          style={{
+            backgroundImage:
+              'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80)',
+          }}
+        />
+      </div>
       {/* Gradient overlay — warm dark */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#110C0A] via-[#110C0A]/85 to-[#110C0A]/40" />
 
