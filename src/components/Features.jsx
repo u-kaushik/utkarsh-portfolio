@@ -42,11 +42,11 @@ function ShufflerCard() {
             style={{
               top: `${pos * 14}px`,
               zIndex: 4 - pos,
-              opacity: pos === 0 ? 1 : pos === 1 ? 0.7 : pos === 2 ? 0.4 : 0.2,
+              opacity: pos === 0 ? 1 : pos === 1 ? 0.85 : pos === 2 ? 0.6 : 0.35,
               transform: `scale(${1 - pos * 0.035})`,
               transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-              background: pos === 0 ? 'rgba(230, 59, 46, 0.12)' : 'rgba(245, 243, 238, 0.06)',
-              border: pos === 0 ? '1px solid rgba(230, 59, 46, 0.25)' : '1px solid rgba(245, 243, 238, 0.1)',
+              background: pos === 0 ? 'rgba(230, 59, 46, 0.18)' : `rgba(245, 243, 238, ${0.1 - pos * 0.02})`,
+              border: pos === 0 ? '1px solid rgba(230, 59, 46, 0.35)' : '1px solid rgba(245, 243, 238, 0.12)',
             }}
           >
             <span className="font-heading font-semibold text-sm text-offwhite">
