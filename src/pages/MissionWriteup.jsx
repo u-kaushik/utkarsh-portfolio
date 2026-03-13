@@ -19,7 +19,7 @@ function Content() {
           Overview
         </h2>
         <p className="font-heading text-offwhite/60 text-base md:text-lg leading-relaxed mb-4">
-          Mission Control is a personal AI operating system — a single dashboard that coordinates 9 specialised AI agents, task orchestration, semantic memory, and business execution. It's the command centre for running an entire operation with AI.
+          Mission Control is a personal AI operating system — a single dashboard that coordinates 10 specialised AI agents, task orchestration, semantic memory, and business execution. It's the command centre for running an entire operation with AI.
         </p>
         <p className="font-heading text-offwhite/60 text-base md:text-lg leading-relaxed">
           Built on React and Supabase with real-time data, it integrates with Telegram for mobile command and uses the EOS (Entrepreneurial Operating System) framework to align every AI action with quarterly business objectives.
@@ -51,7 +51,7 @@ function Content() {
             <p>&nbsp;&nbsp;{'→'} <span className="text-offwhite/70">Jarvis</span> (central orchestrator)</p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;{'→'} <span className="text-offwhite/70">Semantic Memory</span> (Supabase + pgvector)</p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;{'→'} <span className="text-offwhite/70">Task Queue</span> (priority-weighted, agent-assigned)</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;{'→'} <span className="text-offwhite/70">Agent Pool</span> (9 agents, skill-routed)</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;{'→'} <span className="text-offwhite/70">Agent Pool</span> (10 agents, skill-routed)</p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;{'→'} <span className="text-offwhite/70">EOS Layer</span> (rocks, scorecard, issues)</p>
             <p>&nbsp;&nbsp;{'→'} <span className="text-signal">Real-time Dashboard</span></p>
           </div>
@@ -68,7 +68,7 @@ function Content() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
-            { name: 'Jarvis', role: 'Orchestrator', desc: 'Central hub. Routes tasks, maintains context, coordinates all agents via Telegram and dashboard.' },
+            { name: 'Jarvis', role: 'Orchestrator', desc: 'Central hub via OpenClaw gateway on Telegram. Routes tasks, maintains context, coordinates all agents. Upgraded himself to support two-way voice-text transcription, voice note replies, and 1-1 live meetup links — mimicking a real voice call.' },
             { name: 'Sola', role: 'Researcher', desc: 'Deep research on any topic. Produces structured reports with sources and recommendations.' },
             { name: 'Archie', role: 'Architect', desc: 'Technical architecture and system design. Produces specs that Kai can execute against.' },
             { name: 'Kai', role: 'Builder', desc: 'Full-stack code generation. Builds features, fixes bugs, writes tests.' },
@@ -76,6 +76,7 @@ function Content() {
             { name: 'Luna', role: 'Designer', desc: 'Visual asset generation. Icons, social graphics, brand materials via AI image models.' },
             { name: 'Echo', role: 'Writer', desc: 'Long-form content, marketing copy, email sequences. Matches brand voice.' },
             { name: 'Dash', role: 'DevOps', desc: 'Deployment, monitoring, infrastructure. Keeps everything running.' },
+            { name: 'Penny', role: 'Finance', desc: 'Accounting, bookkeeping, and financial admin. Tracks revenue, expenses, invoicing, and keeps the books clean.' },
             { name: 'Quinn', role: 'PM', desc: 'Product management. Tracks rocks, scorecards, and EOS execution metrics.' },
           ].map((agent) => (
             <div
@@ -150,7 +151,7 @@ function Content() {
         </p>
         <div className="flex flex-wrap gap-6">
           {[
-            { metric: '9', label: 'Active Agents' },
+            { metric: '10', label: 'Active Agents' },
             { metric: '847+', label: 'Tasks Routed' },
             { metric: '99.7%', label: 'System Uptime' },
           ].map((stat) => (
