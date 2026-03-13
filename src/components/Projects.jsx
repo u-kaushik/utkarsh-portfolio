@@ -261,10 +261,6 @@ const projects = [
     github: 'https://github.com/u-kaushik/Auto-App-Factory-Portfolio',
     live: 'https://demoautoappfactory.netlify.app/',
     writeup: '#factory-writeup',
-    images: [
-      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80',
-    ],
     icon: Bot,
     bg: 'bg-[#0D0908]',
     accent: 'signal',
@@ -281,10 +277,6 @@ const projects = [
     github: 'https://github.com/u-kaushik/Mission-Control-Portfolio',
     live: 'https://demomissioncontrol.netlify.app/',
     writeup: '#mission-writeup',
-    images: [
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-    ],
     icon: LayoutDashboard,
     bg: 'bg-[#0D0D14]',
     accent: 'signal',
@@ -422,25 +414,10 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right column: mockup + image gallery */}
-                <div className={`project-mockup flex flex-col gap-4 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                {/* Mockup */}
+                <div className={`project-mockup ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
                   <div className="bg-offwhite/[0.03] border border-offwhite/[0.06] rounded-[2rem] p-4 md:p-5 h-[300px] md:h-[380px]">
                     <project.MockupComponent />
-                  </div>
-                  {/* App screenshots */}
-                  <div className="grid grid-cols-2 gap-3">
-                    {project.images.map((src, imgIdx) => (
-                      <div
-                        key={imgIdx}
-                        className="rounded-xl overflow-hidden border border-offwhite/[0.06] h-[120px] md:h-[140px]"
-                      >
-                        <img
-                          src={src}
-                          alt={`${project.title} screenshot ${imgIdx + 1}`}
-                          className="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500"
-                        />
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
