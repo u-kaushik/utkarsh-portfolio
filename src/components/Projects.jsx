@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Github, Bot, LayoutDashboard, ArrowRight } from 'lucide-react'
+import { Github, Bot, LayoutDashboard, FileText, Globe } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -260,6 +260,11 @@ const projects = [
     tags: ['Python', 'Multi-Agent', 'LLM Orchestration', 'Prompt Chaining'],
     github: 'https://github.com/u-kaushik/Auto-App-Factory-Portfolio',
     live: 'https://demoautoappfactory.netlify.app/',
+    writeup: '#factory-writeup',
+    images: [
+      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80',
+    ],
     icon: Bot,
     bg: 'bg-[#0D0908]',
     accent: 'signal',
@@ -275,6 +280,11 @@ const projects = [
     tags: ['TypeScript', 'React', 'Supabase', 'Semantic Memory', 'EOS'],
     github: 'https://github.com/u-kaushik/Mission-Control-Portfolio',
     live: 'https://demomissioncontrol.netlify.app/',
+    writeup: '#mission-writeup',
+    images: [
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
+    ],
     icon: LayoutDashboard,
     bg: 'bg-[#0D0D14]',
     accent: 'signal',
@@ -383,32 +393,54 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-3">
                     <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="lift inline-flex items-center gap-2 font-heading text-sm text-offwhite/50 hover:text-offwhite transition-colors"
+                      href={project.writeup}
+                      className="lift inline-flex items-center gap-2 px-4 py-2 rounded-full bg-offwhite/[0.06] border border-offwhite/[0.1] font-heading text-sm text-offwhite/70 hover:text-offwhite hover:bg-offwhite/[0.1] transition-all"
                     >
-                      <Github size={15} />
-                      <span>Source</span>
+                      <FileText size={14} />
+                      <span>View Project</span>
                     </a>
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="lift inline-flex items-center gap-2 font-heading text-sm text-signal hover:text-offwhite transition-colors"
+                      className="lift inline-flex items-center gap-2 px-4 py-2 rounded-full bg-signal/10 border border-signal/25 font-heading text-sm text-signal hover:bg-signal/20 transition-all"
                     >
-                      <span>View project</span>
-                      <ArrowRight size={14} />
+                      <Globe size={14} />
+                      <span>See Live Demo</span>
+                    </a>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="lift inline-flex items-center gap-2 font-heading text-sm text-offwhite/40 hover:text-offwhite transition-colors"
+                    >
+                      <Github size={15} />
+                      <span>Source</span>
                     </a>
                   </div>
                 </div>
 
-                {/* Mockup — large, dark, animated */}
-                <div className={`project-mockup ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                {/* Right column: mockup + image gallery */}
+                <div className={`project-mockup flex flex-col gap-4 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
                   <div className="bg-offwhite/[0.03] border border-offwhite/[0.06] rounded-[2rem] p-4 md:p-5 h-[300px] md:h-[380px]">
                     <project.MockupComponent />
+                  </div>
+                  {/* App screenshots */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {project.images.map((src, imgIdx) => (
+                      <div
+                        key={imgIdx}
+                        className="rounded-xl overflow-hidden border border-offwhite/[0.06] h-[120px] md:h-[140px]"
+                      >
+                        <img
+                          src={src}
+                          alt={`${project.title} screenshot ${imgIdx + 1}`}
+                          className="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

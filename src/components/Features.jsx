@@ -10,8 +10,9 @@ function ShufflerCard() {
     { title: 'Frontend', sub: 'Concept to components in hours' },
     { title: 'Backend', sub: 'API + auth + deploy, same sprint' },
     { title: 'AI Pipeline', sub: 'Agents wired and running' },
+    { title: 'Deployment', sub: 'CI/CD, domains, live in minutes' },
   ]
-  const [order, setOrder] = useState([0, 1, 2])
+  const [order, setOrder] = useState([0, 1, 2, 3])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,23 +34,25 @@ function ShufflerCard() {
       <p className="font-heading text-sm text-offwhite/50 mb-6">
         You describe the vision. I handle frontend, backend, AI, and deployment. Full-stack means the whole thing ships together, fast.
       </p>
-      <div className="relative flex-1 min-h-[140px]">
+      <div className="relative flex-1 min-h-[160px]">
         {order.map((idx, pos) => (
           <div
             key={idx}
-            className="absolute inset-x-0 bg-offwhite/[0.04] border border-offwhite/[0.08] rounded-2xl px-5 py-4 transition-all duration-500"
+            className="absolute inset-x-0 rounded-2xl px-5 py-4 transition-all duration-500"
             style={{
-              top: `${pos * 16}px`,
-              zIndex: 3 - pos,
-              opacity: 1 - pos * 0.25,
-              transform: `scale(${1 - pos * 0.04})`,
+              top: `${pos * 14}px`,
+              zIndex: 4 - pos,
+              opacity: pos === 0 ? 1 : pos === 1 ? 0.7 : pos === 2 ? 0.4 : 0.2,
+              transform: `scale(${1 - pos * 0.035})`,
               transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+              background: pos === 0 ? 'rgba(230, 59, 46, 0.12)' : 'rgba(245, 243, 238, 0.06)',
+              border: pos === 0 ? '1px solid rgba(230, 59, 46, 0.25)' : '1px solid rgba(245, 243, 238, 0.1)',
             }}
           >
             <span className="font-heading font-semibold text-sm text-offwhite">
               {labels[idx].title}
             </span>
-            <span className="font-mono text-[11px] text-offwhite/40 ml-3">
+            <span className="font-mono text-[11px] text-offwhite/50 ml-3">
               {labels[idx].sub}
             </span>
           </div>
@@ -126,38 +129,42 @@ function TypewriterCard() {
   )
 }
 
-/* ---- Card 3: Cursor Protocol Scheduler ---- */
-function SchedulerCard() {
-  const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
-  const [activeDay, setActiveDay] = useState(-1)
-  const [cursorPos, setCursorPos] = useState({ x: -30, y: 50, visible: false })
-  const [saved, setSaved] = useState(false)
-  const [step, setStep] = useState(0)
+/* ---- Card 3: Business Metrics Animation ---- */
+function MetricsCard() {
+  const metrics = [
+    { label: 'Conversion', target: 24.3, suffix: '%', up: true },
+    { label: 'Revenue', target: 48, suffix: 'k', up: true },
+    { label: 'Dev Cost', target: 72, suffix: '%', up: false },
+  ]
+  const [values, setValues] = useState(metrics.map(() => 0))
+  const [phase, setPhase] = useState(0)
 
+  // Animate metrics counting up, then reset
   useEffect(() => {
-    const sequence = [
-      () => setCursorPos({ x: 10, y: 50, visible: true }),
-      () => setCursorPos({ x: 95, y: 20, visible: true }),
-      () => setActiveDay(2),
-      () => setCursorPos({ x: 175, y: 20, visible: true }),
-      () => setActiveDay(4),
-      () => setCursorPos({ x: 200, y: 55, visible: true }),
-      () => setSaved(true),
-      () => setCursorPos({ x: 260, y: 55, visible: false }),
-      () => {
-        setActiveDay(-1)
-        setSaved(false)
-        setCursorPos({ x: -30, y: 50, visible: false })
-      },
-    ]
+    if (phase === 0) {
+      // Count up
+      let frame = 0
+      const interval = setInterval(() => {
+        frame++
+        const p = Math.min(frame / 50, 1)
+        const ease = 1 - Math.pow(1 - p, 3)
+        setValues(metrics.map((m) => +(m.target * ease).toFixed(1)))
+        if (p >= 1) {
+          clearInterval(interval)
+          setTimeout(() => setPhase(1), 3000)
+        }
+      }, 40)
+      return () => clearInterval(interval)
+    } else {
+      // Reset and restart
+      setValues(metrics.map(() => 0))
+      const timer = setTimeout(() => setPhase(0), 800)
+      return () => clearTimeout(timer)
+    }
+  }, [phase])
 
-    const timer = setTimeout(() => {
-      sequence[step]()
-      setStep((s) => (s + 1) % sequence.length)
-    }, step === sequence.length - 1 ? 2000 : 700)
-
-    return () => clearTimeout(timer)
-  }, [step])
+  const stages = ['Brief', 'Scope', 'MVP', 'Launch']
+  const activeStage = values[0] === 0 ? 0 : values[0] < 10 ? 1 : values[0] < 20 ? 2 : 3
 
   return (
     <div className="bg-[#1A1210] border border-offwhite/[0.06] rounded-[2rem] p-8 shadow-sm h-full flex flex-col">
@@ -168,47 +175,52 @@ function SchedulerCard() {
       <p className="font-heading text-sm text-offwhite/50 mb-6">
         Ten years of working directly with business owners means every technical decision is anchored to a commercial outcome. I build what matters.
       </p>
-      <div className="flex-1 relative bg-offwhite/[0.03] border border-offwhite/[0.06] rounded-xl p-4 overflow-hidden">
-        <div className="flex gap-2 mb-3">
-          {days.map((d, i) => (
-            <div
-              key={i}
-              className={`w-9 h-9 rounded-lg flex items-center justify-center font-mono text-xs transition-all duration-300 ${
-                i === activeDay || (activeDay >= 2 && (i === 2 || i === 4) && i <= activeDay)
-                  ? 'bg-signal text-offwhite scale-95'
-                  : 'bg-offwhite/[0.05] text-offwhite/40'
-              }`}
-            >
-              {d}
+      <div className="flex-1 flex flex-col gap-3">
+        {/* Pipeline stages */}
+        <div className="flex items-center gap-1">
+          {stages.map((stage, i) => (
+            <div key={stage} className="flex items-center flex-1">
+              <div
+                className={`flex-1 py-1.5 rounded-lg text-center font-mono text-[9px] transition-all duration-500 ${
+                  i <= activeStage
+                    ? 'bg-signal/20 text-signal border border-signal/30'
+                    : 'bg-offwhite/[0.04] text-offwhite/25 border border-offwhite/[0.06]'
+                }`}
+              >
+                {stage}
+              </div>
+              {i < stages.length - 1 && (
+                <div className={`w-2 h-px mx-0.5 transition-colors duration-500 ${i < activeStage ? 'bg-signal/40' : 'bg-offwhite/10'}`} />
+              )}
             </div>
           ))}
         </div>
-        <div
-          className={`inline-flex items-center px-4 py-1.5 rounded-full font-mono text-[10px] transition-all duration-300 ${
-            saved ? 'bg-signal text-offwhite' : 'bg-offwhite/[0.05] text-offwhite/30'
-          }`}
-        >
-          {saved ? 'Saved' : 'Save'}
+
+        {/* Metric cards */}
+        <div className="flex gap-2 flex-1">
+          {metrics.map((m, i) => (
+            <div
+              key={m.label}
+              className="flex-1 bg-offwhite/[0.04] border border-offwhite/[0.06] rounded-xl p-3 flex flex-col justify-between"
+            >
+              <span className="font-mono text-[8px] text-offwhite/30 uppercase">{m.label}</span>
+              <span className="font-heading font-bold text-lg text-offwhite/90">
+                {m.up ? '' : '-'}{values[i]}{m.suffix}
+              </span>
+              <div className="flex items-center gap-1">
+                <span className={`text-[10px] font-mono ${m.up ? 'text-green-400' : 'text-signal'}`}>
+                  {m.up ? '\u2191' : '\u2193'}
+                </span>
+                <div className="flex-1 h-1 rounded-full bg-offwhite/[0.06] overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all duration-700 ease-out ${m.up ? 'bg-green-400/60' : 'bg-signal/60'}`}
+                    style={{ width: `${(values[i] / m.target) * 100}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        <svg
-          className="absolute pointer-events-none transition-all duration-500 ease-out"
-          style={{
-            left: cursorPos.x,
-            top: cursorPos.y,
-            opacity: cursorPos.visible ? 1 : 0,
-          }}
-          width="18"
-          height="22"
-          viewBox="0 0 18 22"
-          fill="none"
-        >
-          <path
-            d="M1 1L1 16.5L5.5 12.5L9 20L12 18.5L8.5 11L14 10.5L1 1Z"
-            fill="#F5F3EE"
-            stroke="#110C0A"
-            strokeWidth="1.5"
-          />
-        </svg>
       </div>
     </div>
   )
@@ -250,7 +262,7 @@ export default function Features() {
           <TypewriterCard />
         </div>
         <div className="feature-card">
-          <SchedulerCard />
+          <MetricsCard />
         </div>
       </div>
     </section>
