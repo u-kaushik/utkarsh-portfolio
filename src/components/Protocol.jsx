@@ -195,38 +195,56 @@ export default function Protocol() {
   const cardsRef = useRef([])
 
   useEffect(() => {
+    // Disable pin scroll on mobile — it's janky on small screens
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+
     const ctx = gsap.context(() => {
       cardsRef.current.forEach((card, i) => {
         if (!card) return
-        ScrollTrigger.create({
-          trigger: card,
-          start: 'top 10%',
-          end: 'bottom 10%',
-          pin: true,
-          pinSpacing: true,
-          onEnter: () => {
-            if (i > 0 && cardsRef.current[i - 1]) {
-              gsap.to(cardsRef.current[i - 1], {
-                scale: 0.92,
-                opacity: 0.5,
-                filter: 'blur(8px)',
-                duration: 0.5,
-                ease: 'power2.inOut',
-              })
-            }
-          },
-          onLeaveBack: () => {
-            if (i > 0 && cardsRef.current[i - 1]) {
-              gsap.to(cardsRef.current[i - 1], {
-                scale: 1,
-                opacity: 1,
-                filter: 'blur(0px)',
-                duration: 0.5,
-                ease: 'power2.inOut',
-              })
-            }
-          },
-        })
+
+        if (isMobile) {
+          // Simple fade-in on mobile
+          gsap.from(card, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 80%',
+            },
+          })
+        } else {
+          ScrollTrigger.create({
+            trigger: card,
+            start: 'top 10%',
+            end: 'bottom 10%',
+            pin: true,
+            pinSpacing: true,
+            onEnter: () => {
+              if (i > 0 && cardsRef.current[i - 1]) {
+                gsap.to(cardsRef.current[i - 1], {
+                  scale: 0.92,
+                  opacity: 0.5,
+                  filter: 'blur(8px)',
+                  duration: 0.5,
+                  ease: 'power2.inOut',
+                })
+              }
+            },
+            onLeaveBack: () => {
+              if (i > 0 && cardsRef.current[i - 1]) {
+                gsap.to(cardsRef.current[i - 1], {
+                  scale: 1,
+                  opacity: 1,
+                  filter: 'blur(0px)',
+                  duration: 0.5,
+                  ease: 'power2.inOut',
+                })
+              }
+            },
+          })
+        }
       })
     }, sectionRef)
     return () => ctx.revert()
@@ -246,9 +264,9 @@ export default function Protocol() {
           <div
             key={step.num}
             ref={(el) => (cardsRef.current[i] = el)}
-            className="h-screen flex items-center justify-center px-6 md:px-16 lg:px-24"
+            className="min-h-[auto] md:h-screen flex items-center justify-center px-4 sm:px-6 md:px-16 lg:px-24 py-8 md:py-0"
           >
-            <div className="w-full max-w-6xl mx-auto bg-[#1A1210] border border-offwhite/[0.06] rounded-[3rem] p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 shadow-lg">
+            <div className="w-full max-w-6xl mx-auto bg-[#1A1210] border border-offwhite/[0.06] rounded-2xl md:rounded-[3rem] p-6 sm:p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 shadow-lg">
               <div className="flex flex-col justify-center">
                 <span className="font-mono text-signal text-sm mb-4">{step.num}</span>
                 <h3 className="font-heading font-bold text-4xl md:text-6xl text-offwhite mb-4">

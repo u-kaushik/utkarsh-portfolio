@@ -47,39 +47,41 @@ export default function Contact() {
           Whether it's a full product, an AI system, or a conversation about how I can add value to your team. I'd rather show you what I can do than talk about it.
         </p>
 
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
           <a
             href="mailto:ukaushik@hotmail.co.uk"
-            className="contact-reveal btn-magnetic inline-flex items-center gap-3 px-8 py-4 rounded-full bg-signal text-offwhite font-heading font-semibold text-sm"
+            className="contact-reveal btn-magnetic inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-signal text-offwhite font-heading font-semibold text-sm"
           >
             <span className="btn-bg bg-[#1A1210] rounded-full" />
             <Mail size={16} className="relative z-10" />
             <span className="relative z-10">ukaushik@hotmail.co.uk</span>
           </a>
 
-          <a
-            href="https://www.linkedin.com/in/utkarshkaushik"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-reveal btn-magnetic inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#0A66C2] text-offwhite font-heading font-semibold text-sm"
-          >
-            <span className="btn-bg bg-[#1A1210] rounded-full" />
-            <Linkedin size={16} className="relative z-10" />
-            <span className="relative z-10">LinkedIn</span>
-            <ArrowUpRight size={14} className="relative z-10 opacity-50" />
-          </a>
+          <div className="flex gap-3">
+            <a
+              href="https://www.linkedin.com/in/utkarshkaushik"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-reveal btn-magnetic inline-flex items-center justify-center gap-2 sm:gap-3 flex-1 sm:flex-none px-5 sm:px-8 py-3 sm:py-4 rounded-full bg-[#0A66C2] text-offwhite font-heading font-semibold text-sm"
+            >
+              <span className="btn-bg bg-[#1A1210] rounded-full" />
+              <Linkedin size={16} className="relative z-10" />
+              <span className="relative z-10">LinkedIn</span>
+              <ArrowUpRight size={14} className="relative z-10 opacity-50" />
+            </a>
 
-          <a
-            href="https://github.com/u-kaushik"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-reveal btn-magnetic inline-flex items-center gap-3 px-8 py-4 rounded-full bg-offwhite/[0.06] border border-offwhite/[0.1] text-offwhite font-heading font-semibold text-sm"
-          >
-            <span className="btn-bg bg-signal rounded-full" />
-            <Github size={16} className="relative z-10" />
-            <span className="relative z-10">GitHub</span>
-            <ArrowUpRight size={14} className="relative z-10 opacity-50" />
-          </a>
+            <a
+              href="https://github.com/u-kaushik"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-reveal btn-magnetic inline-flex items-center justify-center gap-2 sm:gap-3 flex-1 sm:flex-none px-5 sm:px-8 py-3 sm:py-4 rounded-full bg-offwhite/[0.06] border border-offwhite/[0.1] text-offwhite font-heading font-semibold text-sm"
+            >
+              <span className="btn-bg bg-signal rounded-full" />
+              <Github size={16} className="relative z-10" />
+              <span className="relative z-10">GitHub</span>
+              <ArrowUpRight size={14} className="relative z-10 opacity-50" />
+            </a>
+          </div>
         </div>
       </div>
     </section>

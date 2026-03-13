@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Github, Bot, LayoutDashboard, FileText, Globe } from 'lucide-react'
@@ -260,7 +261,7 @@ const projects = [
     tags: ['Python', 'Multi-Agent', 'LLM Orchestration', 'Prompt Chaining'],
     github: 'https://github.com/u-kaushik/Auto-App-Factory-Portfolio',
     live: 'https://demoautoappfactory.netlify.app/',
-    writeup: '#factory-writeup',
+    writeup: '/project/app-factory',
     icon: Bot,
     bg: 'bg-[#0D0908]',
     accent: 'signal',
@@ -276,9 +277,9 @@ const projects = [
     tags: ['TypeScript', 'React', 'Supabase', 'Semantic Memory', 'EOS'],
     github: 'https://github.com/u-kaushik/Mission-Control-Portfolio',
     live: 'https://demomissioncontrol.netlify.app/',
-    writeup: '#mission-writeup',
+    writeup: '/project/mission-control',
     icon: LayoutDashboard,
-    bg: 'bg-[#0D0D14]',
+    bg: 'bg-[#130E0B]',
     accent: 'signal',
     MockupComponent: DashboardLiveMockup,
   },
@@ -386,13 +387,13 @@ export default function Projects() {
 
                   {/* Links */}
                   <div className="flex flex-wrap items-center gap-3">
-                    <a
-                      href={project.writeup}
+                    <Link
+                      to={project.writeup}
                       className="lift inline-flex items-center gap-2 px-4 py-2 rounded-full bg-offwhite/[0.06] border border-offwhite/[0.1] font-heading text-sm text-offwhite/70 hover:text-offwhite hover:bg-offwhite/[0.1] transition-all"
                     >
                       <FileText size={14} />
                       <span>View Project</span>
-                    </a>
+                    </Link>
                     <a
                       href={project.live}
                       target="_blank"
