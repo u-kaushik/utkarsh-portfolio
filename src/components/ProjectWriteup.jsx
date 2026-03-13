@@ -4,7 +4,9 @@ import { ArrowLeft, Globe, Github } from 'lucide-react'
 
 export default function ProjectWriteup({ project }) {
   const [activeSection, setActiveSection] = useState(project.sections[0]?.id || '')
+  const [showNav, setShowNav] = useState(false)
   const contentRef = useRef(null)
+  const heroRef = useRef(null)
 
   // Track active section on scroll
   useEffect(() => {
@@ -21,6 +23,17 @@ export default function ProjectWriteup({ project }) {
 
     const sections = contentRef.current?.querySelectorAll('[data-section]')
     sections?.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  // Show/hide sticky nav based on hero visibility
+  useEffect(() => {
+    if (!heroRef.current) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowNav(!entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    observer.observe(heroRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -72,7 +85,7 @@ export default function ProjectWriteup({ project }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 pt-24 pb-24">
         {/* Hero area */}
-        <div className="mb-16 md:mb-20 pt-8">
+        <div ref={heroRef} className="mb-16 md:mb-20 pt-8">
           <span className="font-mono text-[10px] text-offwhite/30 tracking-widest uppercase block mb-4">
             {project.year} &middot; Case Study
           </span>
@@ -94,62 +107,36 @@ export default function ProjectWriteup({ project }) {
           </div>
         </div>
 
-        {/* Layout: sidebar + content */}
-        <div className="flex gap-12 lg:gap-16">
-          {/* Sidebar — desktop only */}
-          <aside className="hidden lg:block w-56 shrink-0">
-            <nav className="sticky top-28">
-              <div className="relative pl-4">
-                {/* Vertical line */}
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-offwhite/[0.08]" />
-                {/* Active indicator */}
-                <div
-                  className="absolute left-0 w-px bg-signal transition-all duration-300 ease-out"
-                  style={{
-                    top: `${project.sections.findIndex((s) => s.id === activeSection) * 40}px`,
-                    height: '32px',
-                  }}
-                />
-                <div className="flex flex-col gap-2">
-                  {project.sections.map((section) => (
-                    <a
-                      key={section.id}
-                      href={`#${section.id}`}
-                      className={`block py-1.5 font-heading text-sm transition-colors duration-200 ${
-                        activeSection === section.id
-                          ? 'text-offwhite'
-                          : 'text-offwhite/30 hover:text-offwhite/60'
-                      }`}
-                    >
-                      {section.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
+        {/* Centered sticky section nav */}
+        <div
+          className={`fixed top-[72px] left-0 right-0 z-40 transition-all duration-500 ease-out ${
+            showNav
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 -translate-y-4 pointer-events-none'
+          }`}
+        >
+          <div className="flex justify-center px-4">
+            <nav className="bg-[#1A1210]/90 backdrop-blur-xl border border-offwhite/[0.1] rounded-full px-2 py-1.5 flex gap-1 overflow-x-auto max-w-[90vw]">
+              {project.sections.map((section) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`whitespace-nowrap px-3 sm:px-4 py-1.5 rounded-full font-heading text-xs sm:text-sm transition-all duration-200 ${
+                    activeSection === section.id
+                      ? 'bg-signal/15 text-signal'
+                      : 'text-offwhite/40 hover:text-offwhite/60'
+                  }`}
+                >
+                  {section.label}
+                </a>
+              ))}
             </nav>
-          </aside>
-
-          {/* Mobile section nav */}
-          <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-40 bg-[#1A1210]/90 backdrop-blur-xl border border-offwhite/[0.1] rounded-full px-2 py-1.5 flex gap-1 overflow-x-auto max-w-[90vw]">
-            {project.sections.map((section) => (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className={`whitespace-nowrap px-3 py-1.5 rounded-full font-mono text-[10px] transition-all ${
-                  activeSection === section.id
-                    ? 'bg-signal/20 text-signal'
-                    : 'text-offwhite/40'
-                }`}
-              >
-                {section.label}
-              </a>
-            ))}
           </div>
+        </div>
 
-          {/* Content */}
-          <div ref={contentRef} className="flex-1 min-w-0">
-            {project.content}
-          </div>
+        {/* Content */}
+        <div ref={contentRef} className="max-w-3xl mx-auto">
+          {project.content}
         </div>
       </div>
 
