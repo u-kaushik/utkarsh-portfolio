@@ -37,14 +37,14 @@ export default function Contact() {
         </span>
 
         <h2 className="contact-reveal font-heading font-bold text-3xl md:text-5xl text-offwhite mb-4">
-          Have something you want to build?
+          Building something useful?
         </h2>
         <h2 className="contact-reveal font-drama italic text-signal text-5xl md:text-[6rem] leading-[0.95] mb-8">
           Let's talk.
         </h2>
 
         <p className="contact-reveal font-heading text-offwhite/50 text-base md:text-lg mb-12 max-w-lg">
-          Whether it's a full product, an AI system, or a conversation about how I can add value to your team. I'd rather show you what I can do than talk about it.
+          If you need someone who can move between customer insight, the product and the work that takes it to market, I would be glad to hear about it. The case studies show how I think and what I can make.
         </p>
 
         <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">

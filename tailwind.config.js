@@ -5,14 +5,14 @@ export default {
     extend: {
       colors: {
         paper: '#E8E4DD',
-        signal: '#E63B2E',
+        signal: '#8F2F2A',
         offwhite: '#F5F3EE',
         ink: '#111111',
       },
       fontFamily: {
-        heading: ['"Space Grotesk"', 'sans-serif'],
-        drama: ['"DM Serif Display"', 'serif'],
-        mono: ['"Space Mono"', 'monospace'],
+        heading: ['"Inter"', 'sans-serif'],
+        drama: ['"Instrument Serif"', 'serif'],
+        mono: ['"Inter"', 'sans-serif'],
       },
       borderRadius: {
         '2xl-plus': '2rem',

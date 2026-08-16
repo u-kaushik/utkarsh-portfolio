@@ -1,4 +1,5 @@
 import { Linkedin, Github, Mail } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
             Utkarsh Kaushik
           </h3>
           <p className="font-heading text-offwhite/35 text-sm max-w-sm leading-relaxed">
-            AI-native full-stack developer. I turn ambitious ideas into production software.
+            Growth, GTM and product work from first signal to launch. I like useful ideas, clear trade-offs and work that reaches real people.
           </p>
           {/* Social icons */}
           <div className="flex items-center gap-3 mt-5">
@@ -46,18 +47,20 @@ export default function Footer() {
           </h4>
           <div className="flex flex-col gap-2">
             {[
-              { label: 'Work', href: '#projects' },
-              { label: 'Approach', href: '#protocol' },
-              { label: 'About', href: '#philosophy' },
-              { label: 'Contact', href: '#contact' },
+              { label: 'Overview', href: '/' },
+              { label: 'Growth & GTM', href: '/growth' },
+              { label: 'Product engineering', href: '/product' },
+              { label: 'About', href: '/about' },
+              { label: 'Glossary', href: '/glossary' },
+              { label: 'Contact', href: '/#contact' },
             ].map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 className="lift font-heading text-sm text-offwhite/35 hover:text-offwhite transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -104,7 +107,7 @@ export default function Footer() {
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-green-500 pulse-dot" />
           <span className="font-mono text-[10px] text-offwhite/20">
-            System Operational
+            Available for the right role
           </span>
         </div>
       </div>

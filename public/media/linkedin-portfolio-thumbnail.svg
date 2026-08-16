@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBF7F0"/>
+      <stop offset="1" stop-color="#EFE5D8"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#792B27"/>
+      <stop offset="1" stop-color="#371714"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#40231B" flood-opacity=".15"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="627" fill="url(#paper)"/>
+  <circle cx="1090" cy="-15" r="260" fill="#8F2F2A" opacity=".055"/>
+  <circle cx="-55" cy="655" r="245" fill="#8F2F2A" opacity=".045"/>
+
+  <g transform="translate(68 61)">
+    <rect width="58" height="58" rx="18" fill="#8F2F2A"/>
+    <text x="29" y="38" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#FFF9F1">UK.</text>
+    <text x="79" y="22" font-family="Inter, sans-serif" font-size="15" font-weight="700" letter-spacing="2.6" fill="#8F2F2A">UTKARSH KAUSHIK</text>
+    <text x="79" y="48" font-family="Inter, sans-serif" font-size="16" fill="#78665E">Growth · GTM · Product</text>
+  </g>
+
+  <g transform="translate(68 181)">
+    <text x="0" y="0" font-family="Instrument Serif, serif" font-size="70" letter-spacing="-3" fill="#2A1D18">Find the signal.</text>
+    <text x="0" y="73" font-family="Instrument Serif, serif" font-size="70" font-style="italic" letter-spacing="-3" fill="#8F2F2A">Help the product travel.</text>
+    <text x="2" y="128" font-family="Inter, sans-serif" font-size="20" fill="#65544D">Real work across B2C apps, B2B tools and marketing systems,</text>
+    <text x="2" y="159" font-family="Inter, sans-serif" font-size="20" fill="#65544D">from customer research through to launch and learning.</text>
+  </g>
+
+  <g transform="translate(68 491)">
+    <rect width="210" height="70" rx="35" fill="#8F2F2A"/>
+    <text x="105" y="43" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#FFF9F1">View the portfolio ↗</text>
+    <text x="238" y="29" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#8F2F2A">RESEARCH TO USERS</text>
+    <text x="238" y="52" font-family="Inter, sans-serif" font-size="14" fill="#78665E">Positioning · Launches · Systems</text>
+  </g>
+
+  <g transform="translate(815 82)" filter="url(#shadow)">
+    <rect width="315" height="465" rx="34" fill="#FFFDF9" stroke="#D8C9BB"/>
+    <rect x="18" y="18" width="279" height="238" rx="24" fill="url(#screen)"/>
+    <circle cx="91" cy="105" r="54" fill="none" stroke="#F4C9A3" stroke-width="12" opacity=".95"/>
+    <circle cx="91" cy="105" r="24" fill="#FFF8EF"/>
+    <rect x="168" y="67" width="86" height="10" rx="5" fill="#FFF8EF" opacity=".82"/>
+    <rect x="168" y="91" width="63" height="8" rx="4" fill="#FFF8EF" opacity=".42"/>
+    <rect x="168" y="116" width="98" height="8" rx="4" fill="#FFF8EF" opacity=".42"/>
+    <rect x="168" y="141" width="75" height="8" rx="4" fill="#FFF8EF" opacity=".42"/>
+    <text x="32" y="297" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#9A8980">SELECTED WORK</text>
+    <text x="32" y="342" font-family="Instrument Serif, serif" font-size="35" fill="#2A1D18">Product to growth</text>
+    <text x="32" y="376" font-family="Inter, sans-serif" font-size="15" fill="#78665E">B2C · B2B · Marketing systems</text>
+    <line x1="32" y1="405" x2="283" y2="405" stroke="#DED2C6"/>
+    <text x="32" y="438" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#8F2F2A">GROWTH, GTM &amp; PRODUCT PORTFOLIO</text>
+  </g>
+</svg>
