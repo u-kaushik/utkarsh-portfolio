@@ -205,7 +205,7 @@ body {
 .dual-lens { display:grid; grid-template-columns:1.1fr 1fr 1fr; gap:1.25rem; align-items:stretch; }
 .lens-card { padding:2rem; border:1px solid rgba(245,243,238,.09); border-radius:1.5rem; background:rgba(245,243,238,.025); }
 .lens-card span,.move-card span { font:10px 'Space Mono'; color:#E63B2E; }
-.lens-card h3 { font-size:1.35rem; font-weight:650; margin:3rem 0 .8rem; }
+.lens-card h3 { font-size:1.35rem; font-weight:650; margin:2rem 0 .8rem; }
 .lens-card p,.move-card p { color:rgba(245,243,238,.5); line-height:1.7; }
 .case-study { background:linear-gradient(180deg,#15100d 0,#110c0a 42%); }
 .case-gallery { display:flex; align-items:flex-start; gap:2rem; overflow-x:auto; padding:2rem .35rem 4rem; margin-inline:auto; scroll-snap-type:x mandatory; scrollbar-width:none; overscroll-behavior-inline:contain; }
@@ -258,9 +258,9 @@ body {
 .tradeoff-row p,.decision-card p { max-width:780px; color:rgba(245,243,238,.52); line-height:1.75; }
 .decision-section { padding-top:5rem; }
 .decision-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-.decision-card { min-height:300px; padding:1.75rem; display:flex; flex-direction:column; border-radius:1.4rem; background:linear-gradient(145deg,rgba(245,243,238,.055),rgba(245,243,238,.02)); border:1px solid rgba(245,243,238,.09); }
+.decision-card { min-height:240px; padding:1.65rem; display:flex; flex-direction:column; border-radius:1.4rem; background:linear-gradient(145deg,rgba(245,243,238,.055),rgba(245,243,238,.02)); border:1px solid rgba(245,243,238,.09); }
 .decision-card > span { font:9px 'Space Mono'; letter-spacing:.08em; text-transform:uppercase; color:#E63B2E; }
-.decision-card h3 { margin-top:auto; margin-bottom:.8rem; font-size:1.55rem; line-height:1.15; font-weight:650; }
+.decision-card h3 { margin-top:2.4rem; margin-bottom:.8rem; font-size:1.55rem; line-height:1.15; font-weight:650; }
 .assurance-section { display:grid; grid-template-columns:.85fr 1.15fr; gap:4rem; margin:2rem 0 7rem; padding:clamp(2rem,5vw,4.5rem); border:2px solid rgba(20,100,63,.28); border-radius:2rem; color:#10291f; background:#e8eee8; box-shadow:0 18px 50px rgba(20,70,48,.07); }
 .assurance-intro .section-icon { margin-bottom:1.25rem; color:#14643f; background:rgba(20,100,63,.08); border-color:rgba(20,100,63,.18); }
 .assurance-intro .eyebrow { color:rgba(16,41,31,.5); }
@@ -282,9 +282,9 @@ body {
 .maturity-column:last-child p svg { color:#a35d13; }
 .maturity-arrow { width:2.7rem; height:2.7rem; display:grid; place-items:center; border-radius:999px; color:rgba(16,41,31,.45); border:1px solid rgba(16,41,31,.14); }
 .move-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-.move-card { min-height:330px; padding:1.8rem; border-radius:1.5rem; background:#1a1210; border:1px solid rgba(245,243,238,.08); display:flex; flex-direction:column; }
+.move-card { min-height:245px; padding:1.65rem; border-radius:1.5rem; background:#1a1210; border:1px solid rgba(245,243,238,.08); display:flex; flex-direction:column; }
 .move-icon { width:2.7rem; height:2.7rem; margin-bottom:1rem; display:grid; place-items:center; color:#E63B2E; border:1px solid rgba(230,59,46,.25); border-radius:.8rem; background:rgba(230,59,46,.08); }
-.move-card h3 { font-size:1.7rem; font-weight:650; margin-top:auto; margin-bottom:.8rem; }
+.move-card h3 { font-size:1.7rem; font-weight:650; margin-top:2.25rem; margin-bottom:.8rem; }
 .outcome-block { margin-top:8rem; padding:clamp(2rem,6vw,5rem); border-radius:2rem; background:#e8e4dd; color:#15100d; }
 .outcome-block .eyebrow { color:rgba(17,17,17,.5); margin:1.2rem 0 2rem; }
 .next-study { margin-top:3rem; padding-top:5rem; border-top:1px solid rgba(245,243,238,.1); }
@@ -346,7 +346,8 @@ section[id] { scroll-margin-top:7rem; }
  .case-split,.quick-read { grid-template-columns:1fr; padding:3.5rem 0; }
  .judgement-section { padding:4rem 0; }
  .tradeoff-row { grid-template-columns:2rem 1fr; gap:.75rem; }
- .decision-card { min-height:250px; }
+ .decision-card,.move-card { min-height:0; }
+ .decision-card h3,.move-card h3 { margin-top:1.8rem; }
  .assurance-section { grid-template-columns:1fr; gap:3rem; margin-bottom:4rem; }
  .assurance-maturity { grid-template-columns:1fr; gap:2rem; }
  .maturity-arrow { transform:rotate(45deg); }
