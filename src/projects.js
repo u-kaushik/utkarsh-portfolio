@@ -1,7 +1,7 @@
 const projectCatalog = [
   {
     slug: "coaching-funnel",
-    title: "Coach Qualification Funnel",
+    title: "Coaches' Club Academy",
     type: "Marketing operations · Lifecycle funnel",
     status: "Built · Pre-launch",
     cover: "/work/coaching-funnel/02-results.webp",

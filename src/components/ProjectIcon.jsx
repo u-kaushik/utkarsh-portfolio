@@ -23,6 +23,7 @@ const slugAliases = {
   'propfolio': 'propfolio',
   'coach qualification funnel': 'coaching-funnel',
   'coaching funnel': 'coaching-funnel',
+  "coaches' club academy": 'coaching-funnel',
 }
 
 export function projectSlug(value = '') {
