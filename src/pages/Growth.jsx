@@ -97,7 +97,7 @@ export default function Growth() {
             <p className="growth-hero-copy">I work across research, product stories, UGC, campaign delivery and automation. The useful bit is joining them up, so every launch leaves the next one smarter.</p>
             <div className="hero-actions">
               <a href="#growth-work" className="primary-pill">See the growth work <ArrowRight size={16}/></a>
-              <a href="/Utkarsh-Kaushik-Growth-GTM-CV-Jul-2026.pdf" download className="secondary-pill"><FileDown size={16}/> Download growth CV</a>
+              <a href="/Utkarsh-Kaushik-Marketing-Operations-Growth-Systems-CV-Sep-2026.pdf" download className="secondary-pill"><FileDown size={16}/> Download marketing operations CV</a>
             </div>
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function About(){return <><Navbar/><main className="about-page">
   <header className="about-hero px-6 md:px-16 lg:px-24"><div className="max-w-6xl mx-auto">
     <p className="eyebrow">Growth · GTM · Product</p>
     <h1>I like the bit where<br/><em>an idea has to find its people.</em></h1>
-    <div className="about-hero-deck"><p>I work across customer research, product, launch work and the systems that hold it together. I can help find the useful promise, make the thing real and stay close enough to learn what happens next.</p><a href="/Utkarsh-Kaushik-Growth-GTM-CV-Jul-2026.pdf" download className="primary-pill">Download Growth & GTM CV <ArrowDownToLine size={16}/></a></div>
+    <div className="about-hero-deck"><p>I work across customer research, product, launch work and the systems that hold it together. I can help find the useful promise, make the thing real and stay close enough to learn what happens next.</p><a href="/Utkarsh-Kaushik-Marketing-Operations-Growth-Systems-CV-Sep-2026.pdf" download className="primary-pill">Download marketing operations CV <ArrowDownToLine size={16}/></a></div>
   </div></header>
 
   <section className="about-story px-6 md:px-16 lg:px-24"><div className="max-w-6xl mx-auto about-story-grid">
