@@ -17,6 +17,14 @@ import { projects } from '../projects'
 
 const proof = [
   {
+    slug: 'coaching-funnel',
+    label: 'Lifecycle and qualification system',
+    title: 'Coach Qualification Funnel',
+    summary: 'A joined journey from a useful coaching assessment to personalised value, a paid-programme application and a gated sales call.',
+    work: 'Designed and built the assessment, profile-routing logic, tailored four-week Pro Pass preview and qualification handoff. The full mobile journey is ready for launch; completion and conversion results are not yet claimed.',
+    signal: '15-question assessment · Personalisation · Application logic · Call gate',
+  },
+  {
     slug: 'clear-halal',
     label: 'Consumer growth system',
     title: 'Clear Halal',

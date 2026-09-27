@@ -1,5 +1,82 @@
 const projectCatalog = [
   {
+    slug: "coaching-funnel",
+    title: "Coach Qualification Funnel",
+    type: "Marketing operations · Lifecycle funnel",
+    status: "Built · Pre-launch",
+    cover: "/work/coaching-funnel/02-results.webp",
+    gallery: [
+      "/work/coaching-funnel/01-assessment.webp",
+      "/work/coaching-funnel/02-results.webp",
+      "/work/coaching-funnel/03-pathway.webp",
+      "/work/coaching-funnel/04-application.webp",
+    ],
+    aside: "Value first. Qualification before the call.",
+    oneLine:
+      "A joined journey from coaching assessment to personalised result, paid-programme application and gated sales call.",
+    executiveSummary:
+      "A coaching membership needed a route from broad interest to a useful, qualified conversation. I designed and built a 15-question assessment, scoring and profile-routing logic, personalised results, a tailored four-week Pro Pass preview and a short application that controls access to call booking. The complete mobile journey is built and ready for launch; no conversion results are claimed yet.",
+    growthLens: {
+      status: "Built · Pre-launch",
+      summary: "The funnel gives prospects useful insight before asking for commitment, then carries what it learns into the product proposition and qualification step. Launch measurement will test whether that relevance creates stronger applications and better calls.",
+      points: [
+        ["Value before capture", "The assessment earns attention with realistic coaching situations and produces a result worth keeping."],
+        ["Personalisation with purpose", "Profile logic changes the narrative, coaching comparisons and four-week plan instead of stopping at a decorative quiz label."],
+        ["Qualification before calendar", "A short application captures intent and context before a suitable prospect can reach the call-booking step."],
+      ],
+    },
+    lenses: ["Lifecycle design", "Personalisation", "Conversion journey", "React", "Data workflows"],
+    problem:
+      "A generic landing page could explain the membership, but it could not help a coach recognise their own development need or tell the team who was ready for a serious conversation.",
+    bet:
+      "Give the coach a useful diagnosis first. Use that context to make the paid pathway relevant, then protect sales time with an application and gated call handoff.",
+    moves: [
+      [
+        "Assess",
+        "Structured 15 situational questions around real coaching decisions, with a mobile-first interaction that feels useful rather than administrative.",
+      ],
+      [
+        "Personalise",
+        "Connected scoring, profile routing, coach comparisons and development priorities to a tailored four-week Pro Pass plan.",
+      ],
+      [
+        "Qualify",
+        "Built the transition from personalised value into a short intent application, with call booking reserved for suitable applicants.",
+      ],
+    ],
+    tradeoffs: [
+      [
+        "Insight vs. completion",
+        "Enough questions are needed to produce a result with substance, but every extra step adds abandonment risk. The journey uses 15 concise scenarios grouped into three visible stages.",
+      ],
+      [
+        "Personalisation vs. explainability",
+        "Complex scoring could appear more intelligent while becoming harder to defend. The routing stays deterministic so each profile and recommendation can be traced to the coach's answers.",
+      ],
+      [
+        "Lead volume vs. call quality",
+        "Opening the calendar immediately would reduce friction but consume sales time with weak-fit calls. The application adds deliberate friction at the point where qualification matters.",
+      ],
+    ],
+    decisions: [
+      [
+        "Make the result useful on its own",
+        "The free experience gives the coach a recognisable profile, practical development direction and relevant comparisons before presenting the paid next step.",
+      ],
+      [
+        "Preview the product through a plan",
+        "A tailored four-week pathway makes Pro Pass concrete and connects the offer directly to what the assessment uncovered.",
+      ],
+      [
+        "Gate the human handoff",
+        "The call is treated as a scarce conversion step. Intent and context are collected first so the team can prioritise the strongest conversations.",
+      ],
+    ],
+    outcome:
+      "A complete, responsive lifecycle funnel that joins assessment data, personalised value, product positioning, application logic and a gated sales handoff. It is built and ready for launch, with success to be judged on completion, application quality and qualified-call conversion.",
+    links: [],
+  },
+  {
     slug: "globotrotter",
     title: "GloboTrotter",
     type: "Consumer travel · Web + iOS",
@@ -550,6 +627,7 @@ const projectCatalog = [
 ];
 
 const projectOrder = [
+  "coaching-funnel",
   "globotrotter",
   "clear-halal",
   "fullwise",

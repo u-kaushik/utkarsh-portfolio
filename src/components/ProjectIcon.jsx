@@ -8,6 +8,7 @@ const icons = {
   'rca-flow': '/icons/rca-flow.svg',
   'mission-control': '/icons/mission-control.svg',
   propfolio: '/icons/propfolio.svg',
+  'coaching-funnel': '/icons/coaching-funnel.png',
 }
 
 const slugAliases = {
@@ -20,6 +21,8 @@ const slugAliases = {
   'rca flow': 'rca-flow',
   'mission control': 'mission-control',
   'propfolio': 'propfolio',
+  'coach qualification funnel': 'coaching-funnel',
+  'coaching funnel': 'coaching-funnel',
 }
 
 export function projectSlug(value = '') {

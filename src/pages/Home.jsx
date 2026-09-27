@@ -8,7 +8,7 @@ import ProjectIcon from '../components/ProjectIcon'
 import ProjectVisual from '../components/ProjectVisual'
 import { projects } from '../projects'
 
-const featured = ['clear-halal', 'globotrotter', 'mission-control', 'rca-flow']
+const featured = ['coaching-funnel', 'clear-halal', 'globotrotter', 'mission-control', 'rca-flow']
   .map(slug => projects.find(project => project.slug === slug))
   .filter(Boolean)
 
