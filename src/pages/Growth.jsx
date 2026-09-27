@@ -57,6 +57,20 @@ const loop = [
   { icon: LineChart, step: '04', title: 'Learn', copy: 'Feed saves, comments, CTR, conversion and customer replies back into the next round.' },
 ]
 
+const coachingFunnelStages = [
+  { step: '01', title: 'Assess', copy: 'A 15-question mobile assessment captures how a coach responds in real situations.' },
+  { step: '02', title: 'Personalise', copy: 'The scoring model turns those choices into a distinct coaching profile, relevant comparisons and development priorities.' },
+  { step: '03', title: 'Bridge to product', copy: 'A tailored four-week Pro Pass plan makes the next step tangible before asking for commitment.' },
+  { step: '04', title: 'Qualify', copy: 'A short application gathers intent and context, then gates the call booking step for suitable applicants.' },
+]
+
+const coachingFunnelScreens = [
+  { src: '/work/coaching-funnel/01-assessment.webp', label: '01 · Behavioural assessment', alt: 'Mobile coaching assessment with a situational multiple-choice question' },
+  { src: '/work/coaching-funnel/02-results.webp', label: '02 · Personalised result', alt: 'Mobile personalised coaching profile result for The Live Experimenter' },
+  { src: '/work/coaching-funnel/03-pathway.webp', label: '03 · Pro Pass pathway', alt: 'Mobile personalised four-week Pro Pass development plan' },
+  { src: '/work/coaching-funnel/04-application.webp', label: '04 · Qualified application', alt: 'Mobile transition from a personalised plan into a founding Pro Pass application' },
+]
+
 export default function Growth() {
   useEffect(() => {
     const previousTitle = document.title
@@ -110,6 +124,54 @@ export default function Growth() {
               <h3>{title}</h3>
               <p>{copy}</p>
             </div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="growth-funnel-case px-6 md:px-16 lg:px-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="growth-funnel-lead">
+            <div>
+              <p className="eyebrow">Featured growth systems case study</p>
+              <h2>From self-assessment to a <em>qualified conversation.</em></h2>
+            </div>
+            <div className="growth-funnel-summary">
+              <p>I designed and built an end-to-end acquisition and qualification journey for a coaching membership product. It turns a useful free assessment into personalised value, previews the paid experience and moves high-intent coaches into an application before opening the call-booking gate.</p>
+              <div className="growth-funnel-status"><span/> Built and ready for launch · Results not yet claimed</div>
+            </div>
+          </div>
+
+          <div className="growth-funnel-stages" aria-label="Coaching funnel stages">
+            {coachingFunnelStages.map(stage => <article key={stage.step}>
+              <span>{stage.step}</span>
+              <h3>{stage.title}</h3>
+              <p>{stage.copy}</p>
+            </article>)}
+          </div>
+
+          <div className="growth-funnel-phones">
+            {coachingFunnelScreens.map((screen, index) => <figure key={screen.src} className={`growth-funnel-phone phone-${index + 1}`}>
+              <div className="growth-funnel-device"><img src={screen.src} alt={screen.alt} loading="lazy" /></div>
+              <figcaption>{screen.label}</figcaption>
+            </figure>)}
+          </div>
+
+          <div className="growth-funnel-detail">
+            <div>
+              <p className="eyebrow">What I owned</p>
+              <p className="growth-funnel-detail-lead">The proposition, journey architecture and working product layer.</p>
+            </div>
+            <ul>
+              <li>Assessment structure, scoring and profile-routing logic</li>
+              <li>Personalised result, coach comparisons and development narrative</li>
+              <li>Paid-product bridge through a tailored four-week plan</li>
+              <li>Application logic, intent capture and gated call handoff</li>
+              <li>Responsive implementation, data flow, QA and launch preparation</li>
+            </ul>
+            <div className="growth-funnel-takeaway">
+              <p className="eyebrow">Why it matters</p>
+              <p>This is more than a quiz or landing page. It is a joined lifecycle system: value first, relevance second, qualification third and human sales time only when the prospect has earned the next step.</p>
+            </div>
           </div>
         </div>
       </section>
